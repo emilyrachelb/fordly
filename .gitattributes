@@ -1,0 +1,5 @@
+**/*.h linguist-vendored=true
+**/*.m linguist-vendored=true
+
+Podfile.lock linguist-vendored=true
+Podfile linguist-vendored=true

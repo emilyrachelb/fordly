@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>568834615787-mq3mmhiv457bkd63duj66v4gqhd3o9go.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.568834615787-mq3mmhiv457bkd63duj66v4gqhd3o9go</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDoy1NLruB94F0W-r4lsBRjIctcUkm1_o8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>568834615787</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>ca.samantharachelb.code.Fordly</string>
+	<key>PROJECT_ID</key>
+	<string>fordly-22dc9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fordly-22dc9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:568834615787:ios:d95df0a10683272b</string>
+	<key>DATABASE_URL</key>
+	<string>https://fordly-22dc9.firebaseio.com</string>
+</dict>
+</plist>

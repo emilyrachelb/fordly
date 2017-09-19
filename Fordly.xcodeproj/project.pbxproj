@@ -1,0 +1,790 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		151E92E01F707CC3003B78BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151E92DF1F707CC3003B78BA /* AppDelegate.swift */; };
+		151E92EB1F707CC3003B78BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 151E92EA1F707CC3003B78BA /* Assets.xcassets */; };
+		151E92EE1F707CC3003B78BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151E92EC1F707CC3003B78BA /* LaunchScreen.storyboard */; };
+		151E92F91F707CC3003B78BA /* FordlyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151E92F81F707CC3003B78BA /* FordlyTests.swift */; };
+		151E93041F707CC3003B78BA /* FordlyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151E93031F707CC3003B78BA /* FordlyUITests.swift */; };
+		15235FB41F70851D00F842B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15235FB31F70851D00F842B4 /* GoogleService-Info.plist */; };
+		152CF4531F707DCA00A9953C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 152CF4521F707DCA00A9953C /* Main.storyboard */; };
+		152CF4551F707DF400A9953C /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152CF4541F707DF400A9953C /* SignInController.swift */; };
+		152CF4571F707DFC00A9953C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152CF4561F707DFC00A9953C /* MainViewController.swift */; };
+		17EDADE33E83ABF9ADF5E69F /* Pods_FordlyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C24694F289C253271F94BF8 /* Pods_FordlyUITests.framework */; };
+		306FEBEFAF5177D41A249BA3 /* Pods_FordlyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A5E863E2BFAC9E929EE2CE6 /* Pods_FordlyTests.framework */; };
+		82208DB74330994FDDDB6D2F /* Pods_Fordly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5B80CCE4DD0F410778332A /* Pods_Fordly.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		151E92F51F707CC3003B78BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 151E92D41F707CC3003B78BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 151E92DB1F707CC3003B78BA;
+			remoteInfo = Fordly;
+		};
+		151E93001F707CC3003B78BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 151E92D41F707CC3003B78BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 151E92DB1F707CC3003B78BA;
+			remoteInfo = Fordly;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		151E92DC1F707CC3003B78BA /* Fordly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fordly.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		151E92DF1F707CC3003B78BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		151E92EA1F707CC3003B78BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		151E92ED1F707CC3003B78BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		151E92EF1F707CC3003B78BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		151E92F41F707CC3003B78BA /* FordlyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FordlyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		151E92F81F707CC3003B78BA /* FordlyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FordlyTests.swift; sourceTree = "<group>"; };
+		151E92FA1F707CC3003B78BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		151E92FF1F707CC3003B78BA /* FordlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FordlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		151E93031F707CC3003B78BA /* FordlyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FordlyUITests.swift; sourceTree = "<group>"; };
+		151E93051F707CC3003B78BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15235FB31F70851D00F842B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		152CF4521F707DCA00A9953C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		152CF4541F707DF400A9953C /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
+		152CF4561F707DFC00A9953C /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		23BC26731438EA2A3EDD65B5 /* Pods-FordlyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FordlyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FordlyTests/Pods-FordlyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2A5E863E2BFAC9E929EE2CE6 /* Pods_FordlyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FordlyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C5B80CCE4DD0F410778332A /* Pods_Fordly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fordly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		44D98C35F7C72B8C38644DD9 /* Pods-FordlyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FordlyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FordlyTests/Pods-FordlyTests.release.xcconfig"; sourceTree = "<group>"; };
+		6C24694F289C253271F94BF8 /* Pods_FordlyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FordlyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7054803BB26940BAA42C62D3 /* Pods-FordlyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FordlyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FordlyUITests/Pods-FordlyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		716DE4A24BD186A6C59C26A2 /* Pods-Fordly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fordly.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fordly/Pods-Fordly.release.xcconfig"; sourceTree = "<group>"; };
+		72CE0341F68D66BC0D618DDF /* Pods-Fordly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fordly.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fordly/Pods-Fordly.debug.xcconfig"; sourceTree = "<group>"; };
+		8F6998B8D4C3D3615FA85F26 /* Pods-FordlyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FordlyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FordlyUITests/Pods-FordlyUITests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		151E92D91F707CC3003B78BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82208DB74330994FDDDB6D2F /* Pods_Fordly.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		151E92F11F707CC3003B78BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				306FEBEFAF5177D41A249BA3 /* Pods_FordlyTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		151E92FC1F707CC3003B78BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				17EDADE33E83ABF9ADF5E69F /* Pods_FordlyUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		151E92D31F707CC3003B78BA = {
+			isa = PBXGroup;
+			children = (
+				151E92DE1F707CC3003B78BA /* Fordly */,
+				151E92F71F707CC3003B78BA /* FordlyTests */,
+				151E93021F707CC3003B78BA /* FordlyUITests */,
+				151E92DD1F707CC3003B78BA /* Products */,
+				9260146D5A75222E6F5AFC6D /* Pods */,
+				451392033A85A44EBEAFBD16 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		151E92DD1F707CC3003B78BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				151E92DC1F707CC3003B78BA /* Fordly.app */,
+				151E92F41F707CC3003B78BA /* FordlyTests.xctest */,
+				151E92FF1F707CC3003B78BA /* FordlyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		151E92DE1F707CC3003B78BA /* Fordly */ = {
+			isa = PBXGroup;
+			children = (
+				151E92DF1F707CC3003B78BA /* AppDelegate.swift */,
+				152CF4541F707DF400A9953C /* SignInController.swift */,
+				152CF4561F707DFC00A9953C /* MainViewController.swift */,
+				152CF4521F707DCA00A9953C /* Main.storyboard */,
+				151E92EA1F707CC3003B78BA /* Assets.xcassets */,
+				15235FB31F70851D00F842B4 /* GoogleService-Info.plist */,
+				151E92EC1F707CC3003B78BA /* LaunchScreen.storyboard */,
+				151E92EF1F707CC3003B78BA /* Info.plist */,
+			);
+			path = Fordly;
+			sourceTree = "<group>";
+		};
+		151E92F71F707CC3003B78BA /* FordlyTests */ = {
+			isa = PBXGroup;
+			children = (
+				151E92F81F707CC3003B78BA /* FordlyTests.swift */,
+				151E92FA1F707CC3003B78BA /* Info.plist */,
+			);
+			path = FordlyTests;
+			sourceTree = "<group>";
+		};
+		151E93021F707CC3003B78BA /* FordlyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				151E93031F707CC3003B78BA /* FordlyUITests.swift */,
+				151E93051F707CC3003B78BA /* Info.plist */,
+			);
+			path = FordlyUITests;
+			sourceTree = "<group>";
+		};
+		451392033A85A44EBEAFBD16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C5B80CCE4DD0F410778332A /* Pods_Fordly.framework */,
+				2A5E863E2BFAC9E929EE2CE6 /* Pods_FordlyTests.framework */,
+				6C24694F289C253271F94BF8 /* Pods_FordlyUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9260146D5A75222E6F5AFC6D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				72CE0341F68D66BC0D618DDF /* Pods-Fordly.debug.xcconfig */,
+				716DE4A24BD186A6C59C26A2 /* Pods-Fordly.release.xcconfig */,
+				23BC26731438EA2A3EDD65B5 /* Pods-FordlyTests.debug.xcconfig */,
+				44D98C35F7C72B8C38644DD9 /* Pods-FordlyTests.release.xcconfig */,
+				7054803BB26940BAA42C62D3 /* Pods-FordlyUITests.debug.xcconfig */,
+				8F6998B8D4C3D3615FA85F26 /* Pods-FordlyUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		151E92DB1F707CC3003B78BA /* Fordly */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 151E93081F707CC3003B78BA /* Build configuration list for PBXNativeTarget "Fordly" */;
+			buildPhases = (
+				21999192F3949EAB0BDC2A8E /* [CP] Check Pods Manifest.lock */,
+				151E92D81F707CC3003B78BA /* Sources */,
+				151E92D91F707CC3003B78BA /* Frameworks */,
+				151E92DA1F707CC3003B78BA /* Resources */,
+				5C808660AB659C7035F3D16A /* [CP] Embed Pods Frameworks */,
+				E8A0FF73ECF3A2ADF7866E50 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Fordly;
+			productName = Fordly;
+			productReference = 151E92DC1F707CC3003B78BA /* Fordly.app */;
+			productType = "com.apple.product-type.application";
+		};
+		151E92F31F707CC3003B78BA /* FordlyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 151E930B1F707CC3003B78BA /* Build configuration list for PBXNativeTarget "FordlyTests" */;
+			buildPhases = (
+				B55ADB5119FC900AFF819AD7 /* [CP] Check Pods Manifest.lock */,
+				151E92F01F707CC3003B78BA /* Sources */,
+				151E92F11F707CC3003B78BA /* Frameworks */,
+				151E92F21F707CC3003B78BA /* Resources */,
+				5648A25DDE961AFCE25D407F /* [CP] Embed Pods Frameworks */,
+				CACCB2E8C083C199828A773A /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				151E92F61F707CC3003B78BA /* PBXTargetDependency */,
+			);
+			name = FordlyTests;
+			productName = FordlyTests;
+			productReference = 151E92F41F707CC3003B78BA /* FordlyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		151E92FE1F707CC3003B78BA /* FordlyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 151E930E1F707CC3003B78BA /* Build configuration list for PBXNativeTarget "FordlyUITests" */;
+			buildPhases = (
+				8F3AAB2109BD1838502FB7A4 /* [CP] Check Pods Manifest.lock */,
+				151E92FB1F707CC3003B78BA /* Sources */,
+				151E92FC1F707CC3003B78BA /* Frameworks */,
+				151E92FD1F707CC3003B78BA /* Resources */,
+				0174E8B19276513DE8825EEC /* [CP] Embed Pods Frameworks */,
+				6CEA9B3A5B954C0AD35891C9 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				151E93011F707CC3003B78BA /* PBXTargetDependency */,
+			);
+			name = FordlyUITests;
+			productName = FordlyUITests;
+			productReference = 151E92FF1F707CC3003B78BA /* FordlyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		151E92D41F707CC3003B78BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Samantha Emily-Rachel Belnavis";
+				TargetAttributes = {
+					151E92DB1F707CC3003B78BA = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = B6H5QNX3H5;
+						ProvisioningStyle = Automatic;
+					};
+					151E92F31F707CC3003B78BA = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = B6H5QNX3H5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 151E92DB1F707CC3003B78BA;
+					};
+					151E92FE1F707CC3003B78BA = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = B6H5QNX3H5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 151E92DB1F707CC3003B78BA;
+					};
+				};
+			};
+			buildConfigurationList = 151E92D71F707CC3003B78BA /* Build configuration list for PBXProject "Fordly" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 151E92D31F707CC3003B78BA;
+			productRefGroup = 151E92DD1F707CC3003B78BA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				151E92DB1F707CC3003B78BA /* Fordly */,
+				151E92F31F707CC3003B78BA /* FordlyTests */,
+				151E92FE1F707CC3003B78BA /* FordlyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		151E92DA1F707CC3003B78BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				152CF4531F707DCA00A9953C /* Main.storyboard in Resources */,
+				15235FB41F70851D00F842B4 /* GoogleService-Info.plist in Resources */,
+				151E92EE1F707CC3003B78BA /* LaunchScreen.storyboard in Resources */,
+				151E92EB1F707CC3003B78BA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		151E92F21F707CC3003B78BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		151E92FD1F707CC3003B78BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0174E8B19276513DE8825EEC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FordlyUITests/Pods-FordlyUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FordlyUITests/Pods-FordlyUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		21999192F3949EAB0BDC2A8E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Fordly-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5648A25DDE961AFCE25D407F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FordlyTests/Pods-FordlyTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FordlyTests/Pods-FordlyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C808660AB659C7035F3D16A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Fordly/Pods-Fordly-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fordly/Pods-Fordly-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6CEA9B3A5B954C0AD35891C9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FordlyUITests/Pods-FordlyUITests-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FordlyUITests/Pods-FordlyUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F3AAB2109BD1838502FB7A4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FordlyUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B55ADB5119FC900AFF819AD7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FordlyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CACCB2E8C083C199828A773A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FordlyTests/Pods-FordlyTests-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FordlyTests/Pods-FordlyTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8A0FF73ECF3A2ADF7866E50 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Fordly/Pods-Fordly-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fordly/Pods-Fordly-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		151E92D81F707CC3003B78BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				152CF4571F707DFC00A9953C /* MainViewController.swift in Sources */,
+				151E92E01F707CC3003B78BA /* AppDelegate.swift in Sources */,
+				152CF4551F707DF400A9953C /* SignInController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		151E92F01F707CC3003B78BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				151E92F91F707CC3003B78BA /* FordlyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		151E92FB1F707CC3003B78BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				151E93041F707CC3003B78BA /* FordlyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		151E92F61F707CC3003B78BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 151E92DB1F707CC3003B78BA /* Fordly */;
+			targetProxy = 151E92F51F707CC3003B78BA /* PBXContainerItemProxy */;
+		};
+		151E93011F707CC3003B78BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 151E92DB1F707CC3003B78BA /* Fordly */;
+			targetProxy = 151E93001F707CC3003B78BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		151E92EC1F707CC3003B78BA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				151E92ED1F707CC3003B78BA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		151E93061F707CC3003B78BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		151E93071F707CC3003B78BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		151E93091F707CC3003B78BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72CE0341F68D66BC0D618DDF /* Pods-Fordly.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B6H5QNX3H5;
+				INFOPLIST_FILE = Fordly/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ca.samantharachelb.code.Fordly;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		151E930A1F707CC3003B78BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 716DE4A24BD186A6C59C26A2 /* Pods-Fordly.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B6H5QNX3H5;
+				INFOPLIST_FILE = Fordly/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ca.samantharachelb.code.Fordly;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		151E930C1F707CC3003B78BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 23BC26731438EA2A3EDD65B5 /* Pods-FordlyTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = B6H5QNX3H5;
+				INFOPLIST_FILE = FordlyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ca.samantharachelb.code.FordlyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fordly.app/Fordly";
+			};
+			name = Debug;
+		};
+		151E930D1F707CC3003B78BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44D98C35F7C72B8C38644DD9 /* Pods-FordlyTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = B6H5QNX3H5;
+				INFOPLIST_FILE = FordlyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ca.samantharachelb.code.FordlyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fordly.app/Fordly";
+			};
+			name = Release;
+		};
+		151E930F1F707CC3003B78BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7054803BB26940BAA42C62D3 /* Pods-FordlyUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = B6H5QNX3H5;
+				INFOPLIST_FILE = FordlyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ca.samantharachelb.code.FordlyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Fordly;
+			};
+			name = Debug;
+		};
+		151E93101F707CC3003B78BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F6998B8D4C3D3615FA85F26 /* Pods-FordlyUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = B6H5QNX3H5;
+				INFOPLIST_FILE = FordlyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ca.samantharachelb.code.FordlyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Fordly;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		151E92D71F707CC3003B78BA /* Build configuration list for PBXProject "Fordly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				151E93061F707CC3003B78BA /* Debug */,
+				151E93071F707CC3003B78BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		151E93081F707CC3003B78BA /* Build configuration list for PBXNativeTarget "Fordly" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				151E93091F707CC3003B78BA /* Debug */,
+				151E930A1F707CC3003B78BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		151E930B1F707CC3003B78BA /* Build configuration list for PBXNativeTarget "FordlyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				151E930C1F707CC3003B78BA /* Debug */,
+				151E930D1F707CC3003B78BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		151E930E1F707CC3003B78BA /* Build configuration list for PBXNativeTarget "FordlyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				151E930F1F707CC3003B78BA /* Debug */,
+				151E93101F707CC3003B78BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 151E92D41F707CC3003B78BA /* Project object */;
+}

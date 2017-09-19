@@ -1,0 +1,6 @@
+framework module Pods_Fordly {
+  umbrella header "Pods-Fordly-umbrella.h"
+
+  export *
+  module * { export * }
+}
