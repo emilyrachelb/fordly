@@ -12,7 +12,7 @@ import Firebase
 import GoogleSignIn
 
 // start MainViewController class
-class MainViewController: UIViewController, GIDSignInUIDelegate {
+class HomeViewController: UIViewController, GIDSignInUIDelegate {
   
   let appDelegate = UIApplication.shared.delegate as! AppDelegate
   var googleUserId: String?
@@ -23,7 +23,7 @@ class MainViewController: UIViewController, GIDSignInUIDelegate {
   // MARK: Properties
   @IBOutlet weak var userEmail: UILabel!
   @IBOutlet weak var userName: UILabel!
-  //@IBOutlet weak var userPhoto: UIImage!
+  @IBOutlet weak var userPhoto: UIImageView!
   
   @IBAction func goToMain(segue:UIStoryboardSegue){
     
@@ -33,8 +33,26 @@ class MainViewController: UIViewController, GIDSignInUIDelegate {
     super.viewDidLoad()
     GIDSignIn.sharedInstance().uiDelegate = self
     GIDSignIn.sharedInstance().signInSilently()
-    
-    
+  }
+  
+  // get image from source asynchronously
+  func getImageFromUrl(url: URL, completion: @escaping (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
+    URLSession.shared.dataTask(with: url) {
+      (data, response, error) in
+      completion(data, response, error)
+    }.resume()
+  }
+  
+  // download the image
+  func downloadUserImage(url: URL) {
+    print("Download Started")
+    getImageFromUrl(url: url) { (data, response, error) in
+      guard let data = data, error == nil else { return }
+      print("Download Finished")
+      DispatchQueue.main.async { () -> Void in
+        self.userPhoto.image = UIImage(data: data)
+      }
+    }
   }
   
   
@@ -49,6 +67,10 @@ class MainViewController: UIViewController, GIDSignInUIDelegate {
       // assign values to labels that are passed to ViewController
       userName.text = appDelegate.gUserName
       userEmail.text = appDelegate.gUserEmail
+      
+      // Download and set profile photo
+      userPhoto.contentMode = .scaleAspectFit
+      downloadUserImage(url: googleUserPhoto)
       
       print("User already signed in")
       print("User ID: \(String(describing: googleUserId))")

@@ -72,7 +72,7 @@
         <!--Plan-->
         <scene sceneID="D4e-2O-ajF">
             <objects>
-                <viewController title="Plan" id="scT-eE-uMt" customClass="MainViewController" customModule="Fordly" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Plan" id="scT-eE-uMt" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r6y-gW-GbB"/>
                         <viewControllerLayoutGuide type="bottom" id="pAd-c4-2XR"/>
@@ -83,9 +83,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Plan" image="tabBarPlan" id="sQm-bN-7NO"/>
-                    <connections>
-                        <segue destination="2nA-JA-sv3" kind="show" identifier="goToLogin" id="zBp-X6-9X8"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zJ1-0D-Lws" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -94,7 +91,7 @@
         <!--Settings-->
         <scene sceneID="48P-qx-rwM">
             <objects>
-                <viewController title="Settings" id="FaN-4y-Bfu" customClass="MainViewController" customModule="Fordly" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Settings" id="FaN-4y-Bfu" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZUc-Ca-ggp"/>
                         <viewControllerLayoutGuide type="bottom" id="NPm-Cl-fwg"/>
@@ -105,9 +102,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="tabBarSettings" id="3D2-cg-GQd"/>
-                    <connections>
-                        <segue destination="2nA-JA-sv3" kind="show" identifier="goToLogin" id="kZX-gy-LOl"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MOD-0g-Nnl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -116,7 +110,7 @@
         <!--Home-->
         <scene sceneID="jfh-pp-ife">
             <objects>
-                <viewController title="Home" id="qxL-pd-pLR" customClass="MainViewController" customModule="Fordly" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home" id="qxL-pd-pLR" customClass="HomeViewController" customModule="Fordly" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rLg-d1-VxY"/>
                         <viewControllerLayoutGuide type="bottom" id="Vqe-Yq-Mcd"/>
@@ -125,46 +119,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23s-mq-8Ru">
-                                <rect key="frame" x="0.0" y="54" width="375" height="93"/>
+                            <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ke-3w-qMr">
+                                <rect key="frame" x="0.0" y="46" width="375" height="94"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M58-ED-yU6">
-                                        <rect key="frame" x="20" y="15" width="71" height="63"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cwc-aP-BSA">
-                                        <rect key="frame" x="112" y="49" width="242" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKW-0M-Gmz">
-                                        <rect key="frame" x="112" y="15" width="242" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <tableViewCell contentMode="scaleToFill" fixedFrame="YES" selectionStyle="default" indentationWidth="10" rowHeight="180" translatesAutoresizingMaskIntoConstraints="NO" id="Bdx-kf-GIz">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bdx-kf-GIz" id="Hm1-oU-Rca">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kV5-9g-Lni">
+                                                    <rect key="frame" x="101" y="16" width="266" height="27"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDb-B5-1se">
+                                                    <rect key="frame" x="101" y="51" width="266" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mfg-g2-EKr">
+                                                    <rect key="frame" x="18" y="10" width="75" height="75"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="K6b-jJ-ZmL"/>
-                                    <constraint firstAttribute="height" constant="93" id="vvl-30-b1o"/>
-                                </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.85091651440000005" green="0.85091651440000005" blue="0.85091651440000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="23s-mq-8Ru" firstAttribute="centerX" secondItem="aJv-RK-ugh" secondAttribute="centerX" id="hhP-30-Tm0"/>
-                            <constraint firstItem="23s-mq-8Ru" firstAttribute="centerY" secondItem="aJv-RK-ugh" secondAttribute="centerY" constant="-233" id="moU-iL-bFI"/>
+                            <constraint firstItem="5Ke-3w-qMr" firstAttribute="centerX" secondItem="aJv-RK-ugh" secondAttribute="centerX" id="1k4-xO-ukV"/>
+                            <constraint firstItem="5Ke-3w-qMr" firstAttribute="width" secondItem="aJv-RK-ugh" secondAttribute="width" id="QzI-qz-BTt"/>
+                            <constraint firstItem="5Ke-3w-qMr" firstAttribute="centerY" secondItem="aJv-RK-ugh" secondAttribute="centerY" constant="-240.5" id="jjc-GI-Xym"/>
+                            <constraint firstItem="5Ke-3w-qMr" firstAttribute="top" secondItem="aJv-RK-ugh" secondAttribute="top" constant="46" id="oCw-Be-lSf"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="tabBarHome" selectedImage="tabBarHome" id="Mjd-Hl-xhV"/>
                     <connections>
-                        <outlet property="userEmail" destination="Cwc-aP-BSA" id="47y-T2-v1T"/>
-                        <outlet property="userName" destination="PKW-0M-Gmz" id="G75-Lc-ztF"/>
-                        <segue destination="2nA-JA-sv3" kind="show" identifier="goToLogin" id="Wss-tT-8Qj"/>
+                        <outlet property="userEmail" destination="zDb-B5-1se" id="OLr-07-vVZ"/>
+                        <outlet property="userName" destination="kV5-9g-Lni" id="UQW-MN-QFD"/>
+                        <outlet property="userPhoto" destination="Mfg-g2-EKr" id="yuQ-tl-aAY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HRI-uR-eNZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -196,7 +199,4 @@
         <image name="tabBarPlan" width="30" height="30"/>
         <image name="tabBarSettings" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="Wss-tT-8Qj"/>
-    </inferredMetricsTieBreakers>
 </document>
