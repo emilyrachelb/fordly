@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   var gUserName =  String()
   var gUserEmail = String()
   var gUserPhoto: URL!
+  var gUserGender = String()
+  var databaseRef: DatabaseReference!
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Initialize FirebaseApp
@@ -41,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
       return
     }
     
-    
     guard let authentication = user.authentication else { return }
     let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
     
@@ -51,6 +52,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     gUserEmail = user.profile.email
     gUserPhoto = user.profile.imageURL(withDimension: 100 * UInt(UIScreen.main.scale))
     
+    // retrieve user's gender
+    let gplusapi = "https://www.googleapis.com/oauth2/v3/userinfo?access_token=\(user.authentication.accessToken!)"
+    let url = NSURL(string: gplusapi)!
+    
+    
+    let request = NSMutableURLRequest(url: url as URL)
+    request.httpMethod = "GET"
+    request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+    
+    let session = URLSession.shared
+    
+    
+    session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
+      UIApplication.shared.isNetworkActivityIndicatorVisible = false
+      do {
+        let userData = try JSONSerialization.jsonObject(with: data!, options:[]) as? [String:AnyObject]
+        self.gUserGender = userData!["gender"] as! String
+      } catch {
+        NSLog("Account Information could not be loaded")
+      }
+      
+    }).resume()
+    
+    self.databaseRef = Database.database().reference()
+    self.databaseRef.child("user_profiles").child(user!.userID).observeSingleEvent(of: .value, with: { (snapshot) in
+      
+      let snapshot = snapshot.value as? NSDictionary
+      
+      if(snapshot == nil)
+      {
+        self.databaseRef.child("user_profiles").child(user!.userID).child("name").setValue(user?.profile.name)
+        self.databaseRef.child("user_profiles").child(user!.userID).child("email").setValue(user?.profile.email)
+        self.databaseRef.child("user_profiles").child(user!.userID).child("gender").setValue(self.gUserGender)
+      }
+    })
+  
     Auth.auth().signIn(with: credential) { (user, error) in
       if let error = error {
         return

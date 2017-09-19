@@ -19,6 +19,7 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   var googleUserName: String?
   var googleUserEmail: String?
   var googleUserPhoto: URL!
+  var googleUserGender: String?
   
   // MARK: Properties
   @IBOutlet weak var userEmail: UILabel!
@@ -63,6 +64,7 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       googleUserName = appDelegate.gUserName
       googleUserEmail = appDelegate.gUserEmail
       googleUserPhoto = appDelegate.gUserPhoto
+      googleUserGender = appDelegate.gUserGender
       
       // assign values to labels that are passed to ViewController
       userName.text = appDelegate.gUserName
@@ -76,6 +78,7 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       print("User ID: \(String(describing: googleUserId))")
       print("User's Name: \(String(describing: googleUserName))")
       print("User's Email: \(String(describing: googleUserEmail))")
+      print("User's Gender: \(String(describing: googleUserGender))")
     } else {
       print("User not signed in")
       self.performSegue(withIdentifier: "goToLogin", sender: nil)
