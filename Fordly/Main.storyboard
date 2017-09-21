@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2nA-JA-sv3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2nA-JA-sv3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,7 +34,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wFc-QY-DnX" customClass="GIDSignInButton">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFc-QY-DnX" customClass="GIDSignInButton">
                                 <rect key="frame" x="31" y="503" width="312" height="48"/>
                                 <color key="backgroundColor" red="0.85091651440000005" green="0.85091651440000005" blue="0.85091651440000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -52,6 +53,8 @@
                         <constraints>
                             <constraint firstItem="liZ-fL-I52" firstAttribute="centerX" secondItem="HsX-sp-p9B" secondAttribute="centerX" id="0la-HB-rck"/>
                             <constraint firstItem="wFc-QY-DnX" firstAttribute="centerY" secondItem="HsX-sp-p9B" secondAttribute="centerY" constant="193.5" id="3Uz-LB-ESl"/>
+                            <constraint firstItem="wFc-QY-DnX" firstAttribute="leading" secondItem="HsX-sp-p9B" secondAttribute="leadingMargin" constant="15" id="GM7-M0-BZe"/>
+                            <constraint firstItem="A47-OK-UVG" firstAttribute="top" secondItem="wFc-QY-DnX" secondAttribute="bottom" constant="27" id="RaD-Oe-M7M"/>
                             <constraint firstItem="wFc-QY-DnX" firstAttribute="centerX" secondItem="HsX-sp-p9B" secondAttribute="centerX" id="Vgs-WB-mFn"/>
                             <constraint firstItem="liZ-fL-I52" firstAttribute="centerY" secondItem="HsX-sp-p9B" secondAttribute="centerY" constant="-171.5" id="fLI-MV-W0l"/>
                             <constraint firstItem="A47-OK-UVG" firstAttribute="centerX" secondItem="HsX-sp-p9B" secondAttribute="centerX" id="hfX-xH-FNA"/>
@@ -120,13 +123,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ke-3w-qMr">
-                                <rect key="frame" x="0.0" y="46" width="375" height="94"/>
+                                <rect key="frame" x="0.0" y="46" width="375" height="153"/>
                                 <subviews>
-                                    <tableViewCell contentMode="scaleToFill" fixedFrame="YES" selectionStyle="default" indentationWidth="10" rowHeight="180" translatesAutoresizingMaskIntoConstraints="NO" id="Bdx-kf-GIz">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
+                                    <tableViewCell contentMode="scaleToFill" fixedFrame="YES" selectionStyle="default" indentationWidth="10" rowHeight="239" translatesAutoresizingMaskIntoConstraints="NO" id="Bdx-kf-GIz">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="153"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bdx-kf-GIz" id="Hm1-oU-Rca">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="152.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kV5-9g-Lni">
@@ -159,7 +162,7 @@
                         <constraints>
                             <constraint firstItem="5Ke-3w-qMr" firstAttribute="centerX" secondItem="aJv-RK-ugh" secondAttribute="centerX" id="1k4-xO-ukV"/>
                             <constraint firstItem="5Ke-3w-qMr" firstAttribute="width" secondItem="aJv-RK-ugh" secondAttribute="width" id="QzI-qz-BTt"/>
-                            <constraint firstItem="5Ke-3w-qMr" firstAttribute="centerY" secondItem="aJv-RK-ugh" secondAttribute="centerY" constant="-240.5" id="jjc-GI-Xym"/>
+                            <constraint firstItem="5Ke-3w-qMr" firstAttribute="centerY" secondItem="aJv-RK-ugh" secondAttribute="centerY" constant="-211" id="jjc-GI-Xym"/>
                             <constraint firstItem="5Ke-3w-qMr" firstAttribute="top" secondItem="aJv-RK-ugh" secondAttribute="top" constant="46" id="oCw-Be-lSf"/>
                         </constraints>
                     </view>
@@ -172,7 +175,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HRI-uR-eNZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-314.39999999999998" y="874.81259370314854"/>
+            <point key="canvasLocation" x="-1116" y="874.81259370314854"/>
+        </scene>
+        <!--Log-->
+        <scene sceneID="P89-xi-oPe">
+            <objects>
+                <viewController id="T31-6K-Top" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QSy-6z-c26"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ksu-7o-6Rz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XKA-u9-iKx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Log" image="tabBarLog" id="BRM-E6-0bK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tj4-l4-DGn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-278" y="875"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oWj-4B-KPJ">
@@ -185,6 +207,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="qxL-pd-pLR" kind="relationship" relationship="viewControllers" id="OXq-ks-UHs"/>
+                        <segue destination="T31-6K-Top" kind="relationship" relationship="viewControllers" id="bBg-h6-pu7"/>
                         <segue destination="scT-eE-uMt" kind="relationship" relationship="viewControllers" id="rDH-eF-1yl"/>
                         <segue destination="FaN-4y-Bfu" kind="relationship" relationship="viewControllers" id="x9f-Fp-EvV"/>
                     </connections>
@@ -196,6 +219,7 @@
     </scenes>
     <resources>
         <image name="tabBarHome" width="30" height="30"/>
+        <image name="tabBarLog" width="30" height="30"/>
         <image name="tabBarPlan" width="30" height="30"/>
         <image name="tabBarSettings" width="30" height="30"/>
     </resources>

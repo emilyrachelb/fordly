@@ -19,6 +19,7 @@ class SignInController: UIViewController, GIDSignInUIDelegate {
   @IBOutlet weak var appVersionLabel: UILabel!
   @IBOutlet weak var googleSignInButton: GIDSignInButton!
   
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
