@@ -61,6 +61,7 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   var userSleep: HKCategoryValue?
   var userSexualActvity: HKCategoryValue?
   var userGender: String!
+  var userAge: Int!
   
   // create firebase references
   var databaseReference: DatabaseReference!
@@ -104,6 +105,9 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
+    // create database reference
+    databaseReference = Database.database().reference()
+    
    HealthKitManager.sharedInstance.requestHealthKitAuthorization(dataTypesToWrite: nil, dataTypesToRead: dataTypesToRead)
     
     if (GIDSignIn.sharedInstance().hasAuthInKeychain()) {
@@ -112,7 +116,7 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       googleUserName = appDelegate.gUserName
       googleUserEmail = appDelegate.gUserEmail
       googleUserPhoto = appDelegate.gUserPhoto
-      googleUserGender = appDelegate.gUserGender
+      userGender = appDelegate.gUserGender
       
       // assign values to labels that are passed to ViewController
       userName.text = googleUserName
@@ -120,24 +124,49 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       
       // download user's photo
       userPhoto.contentMode = .scaleAspectFit
-      downloadUserImage(url: appDelegate.gUserPhoto)
+      userPhoto.layer.borderWidth = 1
+      userPhoto.layer.masksToBounds = false
+      userPhoto.layer.borderColor = UIColor.black.cgColor
+      userPhoto.layer.cornerRadius = userPhoto.frame.height/2
+      userPhoto.clipsToBounds = true
+      try downloadUserImage(url: appDelegate.gUserPhoto!)
       
       // get the user's gender from HealthKit
       let userAgeAndGender = try? updateUserProfile()
       userGender = userAgeAndGender?.biologicalSex.stringRepresentation
-      print("\(userGender)")
+      userAge = userAgeAndGender?.age
+      print("Gender: \(userGender)")
+      print("Age: \(userAge)")
+      
+      // save values to firebase
+      databaseReference.child("user_profiles").child(googleUserId!).child("age").setValue(userAge)
+      databaseReference.child("user_profiles").child(googleUserId!).child("birthday").setValue(HealthKitManager.sharedInstance.dateOfBirth)
       
       // set the user's gender icon
       if (userGender == "female") {
         userGenderIcon.image = UIImage(named: "genderIcon-female")
+        databaseReference.child("user_profiles").child(googleUserId!).child("gender").setValue(userGender)
+      } else if (userGender == "male") {
+        userGenderIcon.image = UIImage(named: "genderIcon-male")
+        databaseReference.child("user_profiles").child(googleUserId!).child("gender").setValue(userGender)
+      } else if (userGender == "other") {
+        userGenderIcon.image = UIImage(named: "genderIcon-other")
+        databaseReference.child("user_profiles").child(googleUserId!).child("gender").setValue(userGender)
+      } else if (userGender == "not set") {
+        userGenderIcon.image = UIImage(named: "genderIcon-notSet")
+        databaseReference.child("user_profiles").child(googleUserId!).child("gender").setValue(userGender)
       }
+      
+      // set user's date of birth and age
+      userDOBLabel.text = userAgeAndGender?.birthDate
+      userAgeLabel.text = "(\(String(describing: userAgeAndGender!.age)))"
       
       
       print("User already signed in")
       print("User ID: \(String(describing: googleUserId))")
       print("User's Name: \(String(describing: googleUserName))")
       print("User's Email: \(String(describing: googleUserEmail))")
-      print("User's Gender: \(String(describing: googleUserGender))")
+      print("User's Gender: \(String(describing: userGender))")
       print("User Photo URL: \(String(describing: googleUserPhoto))")
     } else {
       print("User not signed in")
@@ -145,25 +174,31 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
     }
   }
 
-  func updateUserProfile() throws -> (age: Int, biologicalSex: HKBiologicalSex){
+  func updateUserProfile() throws -> (age: Int, biologicalSex: HKBiologicalSex, birthDate: String){
       
     // database reference
     databaseReference = Database.database().reference()
     let healthKitStore = HKHealthStore()
     do {
-      let birthdayComponents = try? healthKitStore.dateOfBirthComponents()
-      let biologicalSex = try? healthKitStore.biologicalSex()
+      let dateFormatter = DateFormatter()
+      dateFormatter.locale = Locale(identifier: "en_US")
+      dateFormatter.setLocalizedDateFormatFromTemplate("MMMd")
+      
+      let birthdayComponents = try healthKitStore.dateOfBirthComponents()
+      let biologicalSex = try healthKitStore.biologicalSex()
       
       let today = Date()
       let calendar = Calendar.current
       let currentDateComponents = calendar.dateComponents([.year], from: today)
       
       let thisYear = currentDateComponents.year!
-      let age = thisYear - (birthdayComponents?.year!)!
+      let age = thisYear - birthdayComponents.year!
+      let dateToDisplay = calendar.date(from: birthdayComponents)!
+      let birthDate = dateFormatter.string(from: dateToDisplay)
       
-      let unwrappedBiologicalSex = biologicalSex?.biologicalSex
+      let unwrappedBiologicalSex = biologicalSex.biologicalSex
       
-      return (age, unwrappedBiologicalSex!)
+      return (age, unwrappedBiologicalSex, birthDate)
     }
   }
   

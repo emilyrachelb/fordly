@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     gUserId = user.userID
     gUserName = user.profile.name
     gUserEmail = user.profile.email
-    gUserPhoto = user.profile.imageURL(withDimension: 100 * UInt(UIScreen.main.scale))
+    gUserPhoto = user.profile.imageURL(withDimension: 100 * UInt(UIScreen.main.scale))!
     
     // retrieve user's gender
     let gplusapi = "https://www.googleapis.com/oauth2/v3/userinfo?access_token=\(user.authentication.accessToken!)"

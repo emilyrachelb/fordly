@@ -28,7 +28,7 @@ class HealthKitManager {
   let dateOfBirthCharacteristic = HKCharacteristicType.characteristicType(forIdentifier: HKCharacteristicTypeIdentifier.dateOfBirth)
   let biologicalSexCharacteristic = HKCharacteristicType.characteristicType(forIdentifier: HKCharacteristicTypeIdentifier.biologicalSex)
   let usersHeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)
-  let usersWeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)
+  let usersWeight = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)!
   let usersStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
   let usersSexualActivity = HKCategoryType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sexualActivity)
   let usersSleepActivity = HKCategoryType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis)
@@ -37,7 +37,9 @@ class HealthKitManager {
     if let dateOfBirth = try? healthStore?.dateOfBirthComponents() {
       let dateFormatter = DateFormatter()
       dateFormatter.dateStyle = .long
-      return dateFormatter.string(from: (dateOfBirth as? Date)!)
+      let preferredDateFormat = Calendar.current.date(from: dateOfBirth!)!
+      let birthday = dateFormatter.string(from: preferredDateFormat)
+      return birthday
     }
     return nil
   }
@@ -58,10 +60,25 @@ class HealthKitManager {
     return nil
   }
   
+  
+  func mostRecentWeight(completion: @escaping ((_ bodyMass: Double?, _ date: Date?) -> Void)) {
+    let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+    let query = HKSampleQuery(sampleType: usersWeight, predicate: nil, limit: 1, sortDescriptors: [sortDescriptor]) { (query, results, error) in
+      if let result = results?.first as? HKQuantitySample {
+        let weightMeasurment = result.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
+        completion(weightMeasurment, result.endDate)
+        return
+      }
+      // if no data returned
+      completion(nil, nil)
+    }
+    healthStore?.execute(query)
+  }
+  
   func requestHealthKitAuthorization(dataTypesToWrite: NSSet?, dataTypesToRead: NSSet?) {
     healthStore?.requestAuthorization(toShare: dataTypesToWrite as? Set<HKSampleType>, read: dataTypesToRead as? Set<HKObjectType>, completion: {(success, error) -> Void in
       if success {
-        print ("Successfully authorized")
+        print ("Successfully authorized HealthKit")
       } else {
         print (error?.localizedDescription)
       }
