@@ -60,28 +60,39 @@ class HealthKitManager {
     return nil
   }
   
-  
-  func mostRecentWeight(completion: @escaping ((_ bodyMass: Double?, _ date: Date?) -> Void)) {
-    let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-    let query = HKSampleQuery(sampleType: usersWeight, predicate: nil, limit: 1, sortDescriptors: [sortDescriptor]) { (query, results, error) in
-      if let result = results?.first as? HKQuantitySample {
-        let weightMeasurment = result.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
-        completion(weightMeasurment, result.endDate)
-        return
-      }
-      // if no data returned
-      completion(nil, nil)
-    }
-    healthStore?.execute(query)
+  var healthKitAuthorized: Bool? {
+    return nil
   }
   
   func requestHealthKitAuthorization(dataTypesToWrite: NSSet?, dataTypesToRead: NSSet?) {
     healthStore?.requestAuthorization(toShare: dataTypesToWrite as? Set<HKSampleType>, read: dataTypesToRead as? Set<HKObjectType>, completion: {(success, error) -> Void in
       if success {
         print ("Successfully authorized HealthKit")
+        let healthKitAuthorized = true
       } else {
         print (error?.localizedDescription)
       }
     })
   }
+  
+  class func getMostRecentSample(for sampleType: HKSampleType, completion: @escaping (HKQuantitySample?, Error?) -> Swift.Void) {
+    // use hkquery to load the most recent samples
+    let mostRecentPredicate = HKQuery.predicateForSamples(withStart: Date.distantPast, end: Date(), options: .strictEndDate)
+    
+    let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+    
+    let limit = 1
+    
+    let sampleQuery = HKSampleQuery(sampleType: sampleType, predicate: mostRecentPredicate, limit: limit, sortDescriptors: [sortDescriptor]) { (query, samples, error) in
+      DispatchQueue.main.async {
+        guard let samples = samples, let mostRecentSample = samples.first as? HKQuantitySample else {
+          completion(nil, error)
+          return
+        }
+        completion(mostRecentSample, nil)
+      }
+    }
+    HKHealthStore().execute(sampleQuery)
+  }
+  
 }

@@ -54,12 +54,12 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   
   // HealthKit variables
   var healthStore: HKHealthStore?
-  var userHeight: HKQuantity?
-  var userWeight: HKQuantity?
-  var userBMI: HKQuantity?
-  var userSteps: HKQuantity?
-  var userSleep: HKCategoryValue?
-  var userSexualActvity: HKCategoryValue?
+  var userHeight: Double!
+  var userWeight: Double!
+  var userBMI: Double!
+  var userSteps: Int!
+  var userSleep: HKCategoryType?
+  var userSexualActvity: HKCategoryType?
   var userGender: String!
   var userAge: Int!
   
@@ -73,6 +73,8 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   @IBOutlet weak var userAgeLabel: UILabel!
   @IBOutlet weak var userDOBLabel: UILabel!
   @IBOutlet weak var userGenderIcon: UIImageView!
+  
+  // HealthKit Labels
   
   @IBAction func goToMain(segue:UIStoryboardSegue){
     
@@ -138,6 +140,10 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       print("Gender: \(userGender)")
       print("Age: \(userAge)")
       
+      // set user's date of birth and age
+      userDOBLabel.text = userAgeAndGender?.birthDate
+      userAgeLabel.text = "(\(String(describing: userAgeAndGender!.age)))"
+      
       // save values to firebase
       databaseReference.child("user_profiles").child(googleUserId!).child("age").setValue(userAge)
       databaseReference.child("user_profiles").child(googleUserId!).child("birthday").setValue(HealthKitManager.sharedInstance.dateOfBirth)
@@ -157,11 +163,78 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
         databaseReference.child("user_profiles").child(googleUserId!).child("gender").setValue(userGender)
       }
       
-      // set user's date of birth and age
-      userDOBLabel.text = userAgeAndGender?.birthDate
-      userAgeLabel.text = "(\(String(describing: userAgeAndGender!.age)))"
+      // fetch most recent weight data
+      guard let weightSampleType = HKSampleType.quantityType(forIdentifier: .bodyMass) else {
+        print("Either the height sample doesn't exist, the sample type is no longer available, or there's an error somewhere in the retrieval function")
+        return
+      }
       
+      HealthKitManager.getMostRecentSample(for: weightSampleType, completion: { (sample, error) in
+        guard let sample = sample else {
+          if let error = error {
+            print("Weight sample retrieval error; There's an error in the retrieval function")
+          }
+          return
+        }
+        // convert weight sample to kilos
+        let weightInKilos = sample.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
+        self.userWeight = weightInKilos
+        print("Weight: \(self.userWeight) Kg")
+      })
       
+      // fetch most recent height data
+      guard let heightSampleType = HKSampleType.quantityType(forIdentifier: .height) else {
+        print("Either the weight sample doesn't exist, the sample type is no longer available, or there's an error somewhere in the retrieval function")
+        return
+      }
+      HealthKitManager.getMostRecentSample(for: heightSampleType, completion: { (sample, error) in
+        guard let sample = sample else {
+          if let error = error {
+            print("Height sample retrieval error; There's an error with the retrieval function")
+          }
+          return
+        }
+        // convert height sample into meters
+        let heightInMeters = sample.quantity.doubleValue(for: HKUnit.meter())
+        self.userHeight = heightInMeters
+        print("Height: \(self.userHeight) m")
+      })
+      
+      // fetch BMI data
+      guard let bodyMassIndexSampleType = HKSampleType.quantityType(forIdentifier: .bodyMassIndex) else {
+        print("Either the weight sample doesn't exist, the sample type is no longer available, or there's an error somewhere in the retrieval function")
+        return
+      }
+      HealthKitManager.getMostRecentSample(for: bodyMassIndexSampleType, completion: { (sample, error) in
+        guard let sample = sample else {
+          if let error = error {
+            print("BMI retrieval error; There's an error with the retrieval function")
+          }
+          return
+        }
+        let bmiSample = sample.quantity.doubleValue(for: HKUnit.count())
+        self.userBMI = bmiSample
+        print("BMI: \(self.userBMI)")
+      })
+      
+      // fetch step data
+      guard let stepCountSampleType = HKSampleType.quantityType(forIdentifier: .stepCount) else {
+        print("Either the height sample doesn't exist, the sample type is no longer available, or there's an error somewhere in the retrieval function")
+        return
+      }
+      HealthKitManager.getMostRecentSample(for: stepCountSampleType, completion: { (sample, error) in
+        guard let sample = sample else {
+          if let error = error {
+            print ("Step count retrival error; There's an error with the retrieval function")
+          }
+          return
+        }
+        let stepCountSample = sample.quantity.doubleValue(for: HKUnit.count())
+        self.userSteps = Int(stepCountSample)
+        print("Step Count: \(self.userSteps)")
+      })
+      
+      // Debug Information
       print("User already signed in")
       print("User ID: \(String(describing: googleUserId))")
       print("User's Name: \(String(describing: googleUserName))")
@@ -172,8 +245,10 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       print("User not signed in")
       self.performSegue(withIdentifier: "goToLogin", sender: nil)
     }
+    
   }
 
+  // update the user profile
   func updateUserProfile() throws -> (age: Int, biologicalSex: HKBiologicalSex, birthDate: String){
       
     // database reference
@@ -201,5 +276,4 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       return (age, unwrappedBiologicalSex, birthDate)
     }
   }
-  
 }
