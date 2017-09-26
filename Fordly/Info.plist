@@ -31,6 +31,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Your health data is stored in a file for use by the World State</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Your health data is stored in a file for use by the World State</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

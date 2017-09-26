@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1512D6081F798CAB00053730 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1512D6071F798CAB00053730 /* HealthKitManager.swift */; };
 		151E92E01F707CC3003B78BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151E92DF1F707CC3003B78BA /* AppDelegate.swift */; };
 		151E92EB1F707CC3003B78BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 151E92EA1F707CC3003B78BA /* Assets.xcassets */; };
 		151E92EE1F707CC3003B78BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151E92EC1F707CC3003B78BA /* LaunchScreen.storyboard */; };
@@ -16,6 +17,8 @@
 		152CF4531F707DCA00A9953C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 152CF4521F707DCA00A9953C /* Main.storyboard */; };
 		152CF4551F707DF400A9953C /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152CF4541F707DF400A9953C /* SignInController.swift */; };
 		152CF4571F707DFC00A9953C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152CF4561F707DFC00A9953C /* HomeViewController.swift */; };
+		157B8B631F74361F0009A9A0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157B8B621F74361F0009A9A0 /* HealthKit.framework */; };
+		15D53DE31F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53DE21F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift */; };
 		17EDADE33E83ABF9ADF5E69F /* Pods_FordlyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C24694F289C253271F94BF8 /* Pods_FordlyUITests.framework */; };
 		306FEBEFAF5177D41A249BA3 /* Pods_FordlyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A5E863E2BFAC9E929EE2CE6 /* Pods_FordlyTests.framework */; };
 		82208DB74330994FDDDB6D2F /* Pods_Fordly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5B80CCE4DD0F410778332A /* Pods_Fordly.framework */; };
@@ -39,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1512D6071F798CAB00053730 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		151E92DC1F707CC3003B78BA /* Fordly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fordly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		151E92DF1F707CC3003B78BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		151E92EA1F707CC3003B78BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +58,9 @@
 		152CF4521F707DCA00A9953C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		152CF4541F707DF400A9953C /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		152CF4561F707DFC00A9953C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		157B8B611F74361F0009A9A0 /* Fordly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fordly.entitlements; sourceTree = "<group>"; };
+		157B8B621F74361F0009A9A0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		15D53DE21F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKBiologicalSex+StringRepresentation.swift"; sourceTree = "<group>"; };
 		23BC26731438EA2A3EDD65B5 /* Pods-FordlyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FordlyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FordlyTests/Pods-FordlyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2A5E863E2BFAC9E929EE2CE6 /* Pods_FordlyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FordlyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5B80CCE4DD0F410778332A /* Pods_Fordly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fordly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82208DB74330994FDDDB6D2F /* Pods_Fordly.framework in Frameworks */,
+				157B8B631F74361F0009A9A0 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,14 +126,16 @@
 		151E92DE1F707CC3003B78BA /* Fordly */ = {
 			isa = PBXGroup;
 			children = (
+				157B8B611F74361F0009A9A0 /* Fordly.entitlements */,
+				15D53DE41F79E6DF00C49817 /* View Controllers */,
 				151E92DF1F707CC3003B78BA /* AppDelegate.swift */,
-				152CF4541F707DF400A9953C /* SignInController.swift */,
-				152CF4561F707DFC00A9953C /* HomeViewController.swift */,
+				1512D6071F798CAB00053730 /* HealthKitManager.swift */,
 				152CF4521F707DCA00A9953C /* Main.storyboard */,
 				151E92EA1F707CC3003B78BA /* Assets.xcassets */,
 				15235FB31F70851D00F842B4 /* GoogleService-Info.plist */,
 				151E92EC1F707CC3003B78BA /* LaunchScreen.storyboard */,
 				151E92EF1F707CC3003B78BA /* Info.plist */,
+				15D53DE11F79E64B00C49817 /* HealthKitExtensions */,
 			);
 			path = Fordly;
 			sourceTree = "<group>";
@@ -148,9 +158,27 @@
 			path = FordlyUITests;
 			sourceTree = "<group>";
 		};
+		15D53DE11F79E64B00C49817 /* HealthKitExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				15D53DE21F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift */,
+			);
+			path = HealthKitExtensions;
+			sourceTree = "<group>";
+		};
+		15D53DE41F79E6DF00C49817 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				152CF4541F707DF400A9953C /* SignInController.swift */,
+				152CF4561F707DFC00A9953C /* HomeViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		451392033A85A44EBEAFBD16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				157B8B621F74361F0009A9A0 /* HealthKit.framework */,
 				2C5B80CCE4DD0F410778332A /* Pods_Fordly.framework */,
 				2A5E863E2BFAC9E929EE2CE6 /* Pods_FordlyTests.framework */,
 				6C24694F289C253271F94BF8 /* Pods_FordlyUITests.framework */,
@@ -249,17 +277,25 @@
 					151E92DB1F707CC3003B78BA = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = B6H5QNX3H5;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 					151E92F31F707CC3003B78BA = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = B6H5QNX3H5;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 151E92DB1F707CC3003B78BA;
 					};
 					151E92FE1F707CC3003B78BA = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = B6H5QNX3H5;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 151E92DB1F707CC3003B78BA;
 					};
@@ -513,8 +549,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15D53DE31F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift in Sources */,
 				152CF4571F707DFC00A9953C /* HomeViewController.swift in Sources */,
 				151E92E01F707CC3003B78BA /* AppDelegate.swift in Sources */,
+				1512D6081F798CAB00053730 /* HealthKitManager.swift in Sources */,
 				152CF4551F707DF400A9953C /* SignInController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -672,12 +710,18 @@
 			baseConfigurationReference = 72CE0341F68D66BC0D618DDF /* Pods-Fordly.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B6H5QNX3H5;
+				CODE_SIGN_ENTITLEMENTS = Fordly/Fordly.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: samanthabelnavis@gmail.com (QBVNE63J8A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Fordly/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.samantharachelb.code.Fordly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -686,12 +730,18 @@
 			baseConfigurationReference = 716DE4A24BD186A6C59C26A2 /* Pods-Fordly.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = B6H5QNX3H5;
+				CODE_SIGN_ENTITLEMENTS = Fordly/Fordly.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: samanthabelnavis@gmail.com (QBVNE63J8A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Fordly/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.samantharachelb.code.Fordly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -706,7 +756,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.samantharachelb.code.FordlyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fordly.app/Fordly";
 			};
 			name = Debug;
@@ -722,7 +773,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.samantharachelb.code.FordlyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fordly.app/Fordly";
 			};
 			name = Release;
@@ -737,7 +789,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.samantharachelb.code.FordlyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Fordly;
 			};
 			name = Debug;
@@ -752,7 +805,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ca.samantharachelb.code.FordlyUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Fordly;
 			};
 			name = Release;

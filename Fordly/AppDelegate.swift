@@ -20,7 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   var gUserEmail = String()
   var gUserPhoto: URL!
   var gUserGender = String()
+  // create database reference that points to firebase
   var databaseRef: DatabaseReference!
+  
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Initialize FirebaseApp
@@ -56,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     let gplusapi = "https://www.googleapis.com/oauth2/v3/userinfo?access_token=\(user.authentication.accessToken!)"
     let url = NSURL(string: gplusapi)!
     
-    
+   
     let request = NSMutableURLRequest(url: url as URL)
     request.httpMethod = "GET"
     request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -65,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     
     session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
-      UIApplication.shared.isNetworkActivityIndicatorVisible = false
+      //UIApplication.shared.isNetworkActivityIndicatorVisible = false
       do {
         let userData = try JSONSerialization.jsonObject(with: data!, options:[]) as? [String:AnyObject]
         self.gUserGender = userData!["gender"] as! String

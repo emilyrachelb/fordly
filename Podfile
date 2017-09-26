@@ -10,6 +10,7 @@ target 'Fordly' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Crash'
+  pod 'Firebase/Storage'
 
   target 'FordlyTests' do
     inherit! :search_paths
@@ -18,6 +19,7 @@ target 'Fordly' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Firebase/Crash'
+    pod 'Firebase/Storage'
   end
 
   target 'FordlyUITests' do
@@ -27,6 +29,7 @@ target 'Fordly' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Firebase/Crash'
+    pod 'Firebase/Storage'
   end
 
 end
