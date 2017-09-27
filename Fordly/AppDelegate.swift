@@ -23,6 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   // create database reference that points to firebase
   var databaseRef: DatabaseReference!
   
+  // connectivity things
+  var internetConnected: Bool!
+  
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Initialize FirebaseApp
@@ -30,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self
+    
+    // check network connectivity
     do {
       Network.reachability = try Reachability(hostname: "www.google.com")
       do {
@@ -41,6 +46,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
       }
     } catch {
       print(error)
+    }
+    if (Network.reachability?.isReachable)! {
+      let internetConnected = true
+    } else {
+      let internetConnected = false
     }
     return true
   }

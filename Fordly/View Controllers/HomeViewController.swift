@@ -63,13 +63,6 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   var userGender: String!
   var userAge: Int!
   
-  // variables for user photo storage
-  var userImages: [UIImage]!
-  var userImagesDirectoryPath: String!
-  var userImageTitles: [String]!
-  lazy var configuration: URLSessionConfiguration = URLSessionConfiguration.default
-  lazy var session: URLSession = URLSession(configuration: self.configuration)
-  
   // create firebase references
   var databaseReference: DatabaseReference!
   
@@ -118,8 +111,41 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       userPhoto.layer.cornerRadius = userPhoto.frame.height/2
       userPhoto.clipsToBounds = true
       
-      // download the user's photo
-      if (try? downloadUserImage(url: googleUserPhoto)) != nil {
+      // variables for user photo storage
+      let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+      let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+      let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+      let dirPath = paths.first
+      let imageUrl = URL(fileURLWithPath: dirPath!).appendingPathComponent("\(String(describing: googleUserId)).png")
+      
+      
+      // check internet connection
+      if (appDelegate.internetConnected == true) {
+        // device is connected to the internet; download, save and set user photo
+        if (try? downloadUserImage(url: googleUserPhoto)) != nil {
+          userPhoto.image = UIImage(contentsOfFile: imageUrl.path)
+        } else {
+          // if the file couldn't be downloaded, check for existing photo
+          if FileManager.default.fileExists(atPath: dirPath!) {
+            // photo exists
+            userPhoto.image = UIImage(contentsOfFile: imageUrl.path)
+          } else {
+            // no existing photo
+            userPhoto.image = UIImage(named: "noUserImage")
+          }
+        }
+      } else {
+        // the device cannot reach the internet; check for existing photo
+        if FileManager.default.fileExists(atPath: dirPath!) {
+          // photo exists
+          userPhoto.image = UIImage(contentsOfFile: imageUrl.path)
+        } else {
+          // no existing photo
+          userPhoto.image = UIImage(named: "noUserImage")
+        }
+      }
+      
+      /*if (try? downloadUserImage(url: googleUserPhoto)) != nil {
         let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
         let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
@@ -129,7 +155,7 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
         }
       } else {
         userPhoto.image = UIImage(named: "noUserImage")
-      }
+      }*/
       
       // get the user's gender from HealthKit
       let userAgeAndGender = try? updateUserProfile()
