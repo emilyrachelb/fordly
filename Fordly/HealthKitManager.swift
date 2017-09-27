@@ -32,6 +32,7 @@ class HealthKitManager {
   let usersStepCount = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
   let usersSexualActivity = HKCategoryType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sexualActivity)
   let usersSleepActivity = HKCategoryType.categoryType(forIdentifier: HKCategoryTypeIdentifier.sleepAnalysis)
+  let activitySummaryType = HKActivitySummaryType.activitySummaryType() 
   
   var dateOfBirth: String? {
     if let dateOfBirth = try? healthStore?.dateOfBirthComponents() {
@@ -96,3 +97,4 @@ class HealthKitManager {
   }
   
 }
+

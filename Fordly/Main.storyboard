@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="liZ-fL-I52">
-                                <rect key="frame" x="75" y="115" width="224" height="94"/>
+                                <rect key="frame" x="75.5" y="115" width="224" height="94"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="224" id="07j-HN-Dof"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="94" id="SWO-Zr-h7w"/>
@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wFc-QY-DnX" customClass="GIDSignInButton">
-                                <rect key="frame" x="31" y="503" width="312" height="48"/>
+                                <rect key="frame" x="31" y="503" width="313" height="48"/>
                                 <color key="backgroundColor" red="0.85091651440000005" green="0.85091651440000005" blue="0.85091651440000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A47-OK-UVG">
@@ -141,9 +141,8 @@
                             <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ke-3w-qMr">
                                 <rect key="frame" x="0.0" y="46" width="375" height="97"/>
                                 <subviews>
-                                    <tableViewCell contentMode="scaleToFill" fixedFrame="YES" selectionStyle="default" indentationWidth="10" rowHeight="183" translatesAutoresizingMaskIntoConstraints="NO" id="Bdx-kf-GIz">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="183" translatesAutoresizingMaskIntoConstraints="NO" id="Bdx-kf-GIz">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
-                                        <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bdx-kf-GIz" id="Hm1-oU-Rca">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="96.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -192,6 +191,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="97" id="8yX-V7-rjw"/>
+                                    <constraint firstAttribute="bottom" secondItem="Bdx-kf-GIz" secondAttribute="bottom" id="NJL-u0-Yyv"/>
+                                    <constraint firstItem="Bdx-kf-GIz" firstAttribute="top" secondItem="5Ke-3w-qMr" secondAttribute="top" id="OJ1-os-iZJ"/>
+                                    <constraint firstItem="Bdx-kf-GIz" firstAttribute="leading" secondItem="5Ke-3w-qMr" secondAttribute="leading" id="Xeg-uh-JCw"/>
+                                    <constraint firstAttribute="trailing" secondItem="Bdx-kf-GIz" secondAttribute="trailing" id="zfY-Hn-XGu"/>
                                 </constraints>
                             </view>
                         </subviews>
