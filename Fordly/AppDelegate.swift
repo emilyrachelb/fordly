@@ -30,7 +30,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
     GIDSignIn.sharedInstance().delegate = self
-    
+    do {
+      Network.reachability = try Reachability(hostname: "www.google.com")
+      do {
+        try Network.reachability?.start()
+      } catch let error as Network.Error {
+        print(error)
+      } catch {
+        print(error)
+      }
+    } catch {
+      print(error)
+    }
     return true
   }
   
@@ -168,6 +179,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
   func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
-  
 }
 

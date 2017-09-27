@@ -63,6 +63,13 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   var userGender: String!
   var userAge: Int!
   
+  // variables for user photo storage
+  var userImages: [UIImage]!
+  var userImagesDirectoryPath: String!
+  var userImageTitles: [String]!
+  lazy var configuration: URLSessionConfiguration = URLSessionConfiguration.default
+  lazy var session: URLSession = URLSession(configuration: self.configuration)
+  
   // create firebase references
   var databaseReference: DatabaseReference!
   
@@ -77,32 +84,9 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   // HealthKit Labels
   
   @IBAction func goToMain(segue:UIStoryboardSegue){
-    
   }
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-  }
-  
-  // get image from source asynchronously
-  func getImageFromUrl(url: URL, completion: @escaping (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
-    URLSession.shared.dataTask(with: url) {
-      (data, response, error) in
-      completion(data, response, error)
-    }.resume()
-  }
-  
-  // download the image
-  func downloadUserImage(url: URL) {
-    print("Download Started")
-    getImageFromUrl(url: url) { (data, response, error) in
-      guard let data = data, error == nil else { return }
-      print("Download Finished")
-      DispatchQueue.main.async { () -> Void in
-        self.userPhoto.image = UIImage(data: data)
-      }
-    }
-  }
+  override func viewDidLoad() { super.viewDidLoad() }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
@@ -124,14 +108,28 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       userName.text = googleUserName
       userEmail.text = googleUserEmail
       
-      // download user's photo
+      // create/check for userPhotos storage directory
+      
+      // setup UIImageView for the user's photo
       userPhoto.contentMode = .scaleAspectFit
       userPhoto.layer.borderWidth = 1
       userPhoto.layer.masksToBounds = false
       userPhoto.layer.borderColor = UIColor.black.cgColor
       userPhoto.layer.cornerRadius = userPhoto.frame.height/2
       userPhoto.clipsToBounds = true
-      try downloadUserImage(url: appDelegate.gUserPhoto!)
+      
+      // download the user's photo
+      if (try? downloadUserImage(url: googleUserPhoto)) != nil {
+        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
+        if let dirPath = paths.first {
+          let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent("\(googleUserId).png")
+          userPhoto.image = UIImage(contentsOfFile: imageUrl.path)
+        }
+      } else {
+        userPhoto.image = UIImage(named: "noUserImage")
+      }
       
       // get the user's gender from HealthKit
       let userAgeAndGender = try? updateUserProfile()
@@ -276,4 +274,46 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       return (age, unwrappedBiologicalSex, birthDate)
     }
   }
+  
+  func getDocumentDirectory() -> URL {
+    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    return paths[0]
+  }
+  
+  // get image from source asynchronously
+  func getImageFromUrl(url: URL, completion: @escaping (_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
+    URLSession.shared.dataTask(with: url) {
+      (data, response, error) in
+      completion(data, response, error)
+      }.resume()
+  }
+  
+  // image download function
+  func downloadUserImage(url: URL) {
+    print("Download Started")
+    getImageFromUrl(url: url) { (data, response, error) in
+      guard let data = data, error == nil else { return }
+      print("Download Finished")
+      DispatchQueue.main.async { () -> Void in
+        self.userPhoto.image = UIImage(data: data)
+        
+        // save to file
+        let documentsDirectoryUrl = try! FileManager().url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        // create filename for the image
+        let fileUrl = documentsDirectoryUrl.appendingPathComponent("\(String(describing: self.googleUserId)).png")
+        
+        if !FileManager.default.fileExists(atPath: fileUrl.path) {
+          do {
+            try UIImagePNGRepresentation(self.userPhoto.image!)!.write(to: fileUrl)
+            print("Image was saved")
+          } catch {
+            print(error)
+          }
+        } else {
+          print("Image was not saved")
+        }
+      }
+    }
+  }
+  
 }

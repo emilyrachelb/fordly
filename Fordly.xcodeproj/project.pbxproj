@@ -19,6 +19,10 @@
 		152CF4571F707DFC00A9953C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152CF4561F707DFC00A9953C /* HomeViewController.swift */; };
 		157B8B631F74361F0009A9A0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157B8B621F74361F0009A9A0 /* HealthKit.framework */; };
 		15D53DE31F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53DE21F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift */; };
+		15E3A7E71F7B098C00C49638 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E3A7E61F7B098C00C49638 /* LocalAuthentication.framework */; };
+		15E3A7E91F7B0B1900C49638 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E3A7E81F7B0B1900C49638 /* CoreLocation.framework */; };
+		15E3A7EB1F7B0B1F00C49638 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E3A7EA1F7B0B1F00C49638 /* CloudKit.framework */; };
+		15E3A7EF1F7B2F6E00C49638 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E3A7EE1F7B2F6E00C49638 /* Reachability.swift */; };
 		17EDADE33E83ABF9ADF5E69F /* Pods_FordlyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C24694F289C253271F94BF8 /* Pods_FordlyUITests.framework */; };
 		306FEBEFAF5177D41A249BA3 /* Pods_FordlyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A5E863E2BFAC9E929EE2CE6 /* Pods_FordlyTests.framework */; };
 		82208DB74330994FDDDB6D2F /* Pods_Fordly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5B80CCE4DD0F410778332A /* Pods_Fordly.framework */; };
@@ -61,6 +65,10 @@
 		157B8B611F74361F0009A9A0 /* Fordly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fordly.entitlements; sourceTree = "<group>"; };
 		157B8B621F74361F0009A9A0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		15D53DE21F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKBiologicalSex+StringRepresentation.swift"; sourceTree = "<group>"; };
+		15E3A7E61F7B098C00C49638 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		15E3A7E81F7B0B1900C49638 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		15E3A7EA1F7B0B1F00C49638 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		15E3A7EE1F7B2F6E00C49638 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		23BC26731438EA2A3EDD65B5 /* Pods-FordlyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FordlyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FordlyTests/Pods-FordlyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2A5E863E2BFAC9E929EE2CE6 /* Pods_FordlyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FordlyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5B80CCE4DD0F410778332A /* Pods_Fordly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fordly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +85,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15E3A7EB1F7B0B1F00C49638 /* CloudKit.framework in Frameworks */,
+				15E3A7E91F7B0B1900C49638 /* CoreLocation.framework in Frameworks */,
+				15E3A7E71F7B098C00C49638 /* LocalAuthentication.framework in Frameworks */,
 				82208DB74330994FDDDB6D2F /* Pods_Fordly.framework in Frameworks */,
 				157B8B631F74361F0009A9A0 /* HealthKit.framework in Frameworks */,
 			);
@@ -131,6 +142,7 @@
 				151E92DF1F707CC3003B78BA /* AppDelegate.swift */,
 				1512D6071F798CAB00053730 /* HealthKitManager.swift */,
 				152CF4521F707DCA00A9953C /* Main.storyboard */,
+				15E3A7EE1F7B2F6E00C49638 /* Reachability.swift */,
 				151E92EA1F707CC3003B78BA /* Assets.xcassets */,
 				15235FB31F70851D00F842B4 /* GoogleService-Info.plist */,
 				151E92EC1F707CC3003B78BA /* LaunchScreen.storyboard */,
@@ -178,6 +190,9 @@
 		451392033A85A44EBEAFBD16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15E3A7EA1F7B0B1F00C49638 /* CloudKit.framework */,
+				15E3A7E81F7B0B1900C49638 /* CoreLocation.framework */,
+				15E3A7E61F7B098C00C49638 /* LocalAuthentication.framework */,
 				157B8B621F74361F0009A9A0 /* HealthKit.framework */,
 				2C5B80CCE4DD0F410778332A /* Pods_Fordly.framework */,
 				2A5E863E2BFAC9E929EE2CE6 /* Pods_FordlyTests.framework */,
@@ -280,6 +295,12 @@
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
@@ -551,6 +572,7 @@
 			files = (
 				15D53DE31F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift in Sources */,
 				152CF4571F707DFC00A9953C /* HomeViewController.swift in Sources */,
+				15E3A7EF1F7B2F6E00C49638 /* Reachability.swift in Sources */,
 				151E92E01F707CC3003B78BA /* AppDelegate.swift in Sources */,
 				1512D6081F798CAB00053730 /* HealthKitManager.swift in Sources */,
 				152CF4551F707DF400A9953C /* SignInController.swift in Sources */,
