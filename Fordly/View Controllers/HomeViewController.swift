@@ -17,18 +17,6 @@ import HealthKit
 // start MainViewController class
 class HomeViewController: UIViewController, GIDSignInUIDelegate {
   
-  private let dataTypesToRead: NSSet = {
-    let healthKitManager = HealthKitManager.sharedInstance
-    return NSSet(objects:
-        healthKitManager.biologicalSexCharacteristic,
-        healthKitManager.dateOfBirthCharacteristic,
-        healthKitManager.usersHeight,
-        healthKitManager.usersWeight,
-        healthKitManager.usersStepCount,
-        healthKitManager.usersSleepActivity,
-        healthKitManager.usersSexualActivity)
-  }()
-  
   private enum IdentifyingDataFields: Int {
     case DateOfBirth, BiologicalSex
     
@@ -56,14 +44,15 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   var userHeight: Double!
   var userWeight: Double!
   var userBMI: Double!
-  var userSteps: Int!
+  var userSteps: Double!
   var userSleep: HKCategoryType?
-  var userSexualActvity: HKCategoryType?
+  var lastSexualActivityWith: String!
+  var lastSexualActivityDate: String!
+  var timeSinceLastSexualActivity: String!
+  var timeSinceLastSexualActivityAsNum: Int!
   var userGender: String!
   var userAge: Int!
-
-  // activity circles!
-  var progress: KDCircularProgress!
+  var caste = "Beta"
   
   // internet connectivity
   var couldConnect: Bool!
@@ -84,6 +73,11 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   @IBAction func goToMain(segue:UIStoryboardSegue){
   }
   
+  //KDCircularProgress variable
+  var stepCountProgress: KDCircularProgress!
+  var stepCountAngle: Double = -90.0
+  @IBOutlet weak var messageToUserAboutStepCount: UILabel!
+  //@IBOutlet weak var stepCountLabel: UILabel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -91,35 +85,24 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
     GIDSignIn.sharedInstance().uiDelegate = self
     GIDSignIn.sharedInstance().signInSilently()
     
+    // step count activity ring
+    stepCountProgress = KDCircularProgress(frame: CGRect(x: 16, y: 170, width: 150, height: 150))
+    stepCountProgress.startAngle = -90
+    stepCountProgress.progressThickness = 0.1
+    stepCountProgress.trackThickness = 0.05
+    stepCountProgress.clockwise = true
+    stepCountProgress.roundedCorners = true
+    stepCountProgress.trackColor = UIColor(rgb: 0xFF000A, a: 0.15)
+    stepCountProgress.set(colors: UIColor(rgb: 0xE10014, a: 1), UIColor(rgb: 0xFF000A, a: 1))
+    view.addSubview(stepCountProgress)
     
-    progress = KDCircularProgress(frame: CGRect(x: 16, y: 170, width: 150, height: 150))
-    progress.startAngle = -90
-    progress.progressThickness = 0.1
-    progress.trackThickness = 0.05
-    progress.clockwise = true
-    progress.roundedCorners = true
-    progress.trackColor = UIColor(rgb: 0xFF000A, a: 0.15)
-    progress.set(colors: UIColor(rgb: 0xE10014, a: 1), UIColor(rgb: 0xFF000A, a: 1))
-    view.addSubview(progress)
+    let stepCountPVHorizontalConstraint = NSLayoutConstraint(item: stepCountProgress, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+    let stepCountPVVerticalConstraint = NSLayoutConstraint(item: stepCountProgress, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
+    let stepCountPVWidthConstraint = NSLayoutConstraint(item: stepCountProgress, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 150)
+    let stepCountPVHeightConstraint = NSLayoutConstraint(item: stepCountProgress, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 150)
     
-    // view constraints
-    let horizontalConstraint = NSLayoutConstraint(item: progress, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-    let verticalConstraint = NSLayoutConstraint(item: progress, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-    let widthConstraint = NSLayoutConstraint(item: progress, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 150)
-    let heightConstaint = NSLayoutConstraint(item: progress, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 150)
+    view.addConstraints([stepCountPVHorizontalConstraint, stepCountPVVerticalConstraint, stepCountPVWidthConstraint, stepCountPVHeightConstraint])
     
-    view.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstaint])
-    
-    let stepCountIcon = UIImage(named: "stepCount")
-    let stepCountIconView = UIImageView(image: stepCountIcon!)
-    stepCountIconView.frame = CGRect(x: 50, y: 50, width: 50, height: 50)
-    progress.addSubview(stepCountIconView)
-    let stepCountIconHorizontalConst = NSLayoutConstraint(item: stepCountIconView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: progress, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
-    let stepCountIconVerticalConst = NSLayoutConstraint(item: stepCountIconView, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: progress, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-    let stepCountIconWidthConst = NSLayoutConstraint(item: stepCountIconView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 30)
-    let stepCountIconHeightConst = NSLayoutConstraint(item: stepCountIconView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 30)
-    
-    view.addConstraints([stepCountIconHorizontalConst, stepCountIconVerticalConst, stepCountIconWidthConst, stepCountIconHeightConst])
     
   }
   
@@ -143,8 +126,6 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
     // create database reference
     databaseReference = Database.database().reference()
     
-    // authorize healthkit
-    HealthKitManager.sharedInstance.requestHealthKitAuthorization(dataTypesToWrite: nil, dataTypesToRead: dataTypesToRead)
     
     if (GIDSignIn.sharedInstance().hasAuthInKeychain()) {
       // get user id from current user
@@ -180,7 +161,7 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       
       // check internet connection
       delay(1.0){
-        self.checkInternet()
+        //self.checkInternet()
       }
       
       if (couldConnect == true) {
@@ -188,14 +169,8 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
         if (try? downloadUserImage(url: googleUserPhoto)) != nil {
           userPhoto.image = UIImage(contentsOfFile: imageUrl.path)
         } else {
-          // if the file couldn't be downloaded, check for existing photo
-          if FileManager.default.fileExists(atPath: dirPath!) {
-            // photo exists
-            userPhoto.image = UIImage(contentsOfFile: imageUrl.path)
-          } else {
-            // no existing photo
-            userPhoto.image = UIImage(named: "noUserImage")
-          }
+          // no existing photo
+          userPhoto.image = UIImage(named: "noUserImage")
         }
       } else {
         // the device cannot reach the internet; check for existing photo
@@ -233,6 +208,8 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       userAgeLabel.text = "(\(String(describing: userAgeAndGender!.age)))"
       
       // save values to firebase
+      databaseReference.child("user_profiles").child(googleUserId!).child("name").setValue(googleUserName)
+      databaseReference.child("user_profiles").child(googleUserId!).child("email").setValue(googleUserEmail)
       databaseReference.child("user_profiles").child(googleUserId!).child("age").setValue(userAge)
       databaseReference.child("user_profiles").child(googleUserId!).child("birthday").setValue(HealthKitManager.sharedInstance.dateOfBirth)
       
@@ -251,59 +228,9 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
         databaseReference.child("user_profiles").child(googleUserId!).child("gender").setValue(userGender)
       }
       
-      // fetch most recent weight data
-      guard let weightSampleType = HKSampleType.quantityType(forIdentifier: .bodyMass) else {
-        print("Either the height sample doesn't exist, the sample type is no longer available, or there's an error somewhere in the retrieval function")
-        return
-      }
-      
-      HealthKitManager.getMostRecentSample(for: weightSampleType, completion: { (sample, error) in
-        guard let sample = sample else {
-          if let error = error {
-            print("Weight sample retrieval error; There's an error in the retrieval function")
-          }
-          return
-        }
-        // convert weight sample to kilos
-        let weightInKilos = sample.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
-        self.userWeight = weightInKilos
-        print("Weight: \(self.userWeight) Kg")
-      })
-      
-      // fetch most recent height data
-      guard let heightSampleType = HKSampleType.quantityType(forIdentifier: .height) else {
-        print("Either the weight sample doesn't exist, the sample type is no longer available, or there's an error somewhere in the retrieval function")
-        return
-      }
-      HealthKitManager.getMostRecentSample(for: heightSampleType, completion: { (sample, error) in
-        guard let sample = sample else {
-          if let error = error {
-            print("Height sample retrieval error; There's an error with the retrieval function")
-          }
-          return
-        }
-        // convert height sample into meters
-        let heightInMeters = sample.quantity.doubleValue(for: HKUnit.meter())
-        self.userHeight = heightInMeters
-        print("Height: \(self.userHeight) m")
-      })
-      
-      // fetch BMI data
-      guard let bodyMassIndexSampleType = HKSampleType.quantityType(forIdentifier: .bodyMassIndex) else {
-        print("Either the weight sample doesn't exist, the sample type is no longer available, or there's an error somewhere in the retrieval function")
-        return
-      }
-      HealthKitManager.getMostRecentSample(for: bodyMassIndexSampleType, completion: { (sample, error) in
-        guard let sample = sample else {
-          if let error = error {
-            print("BMI retrieval error; There's an error with the retrieval function")
-          }
-          return
-        }
-        let bmiSample = sample.quantity.doubleValue(for: HKUnit.count())
-        self.userBMI = bmiSample
-        print("BMI: \(self.userBMI)")
-      })
+      // write example data
+      //databaseReference.child("user_health_data").child(googleUserId!).child("sexual_activity").child(date).child("last_instance_date").setValue(date)
+      //databaseReference.child("user_health_data").child(googleUserId!).child("sexual_activity").child(date).child("last_instance_with").setValue("******")
       
       // fetch step data
       guard let stepCountSampleType = HKSampleType.quantityType(forIdentifier: .stepCount) else {
@@ -318,9 +245,32 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
           return
         }
         let stepCountSample = sample.quantity.doubleValue(for: HKUnit.count())
-        self.userSteps = Int(stepCountSample)
+        self.userSteps = stepCountSample
+        let currentDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM-dd-yyyy"
+        let date = formatter.string(from: currentDate)
+        formatter.dateFormat = "MMM-dd-yyyy"
+        self.databaseReference.child("user_health_data").child(self.googleUserId!).child("step_count").child(date).child("steps").setValue(self.userSteps)
+        if (((self.userSteps/10000)*100) >= 75) {
+          self.stepCountAngle = 365
+          self.messageToUserAboutStepCount.text = "You've been very active today. Remember, a healthy \(self.caste), is a happy \(self.caste)"
+        } else {
+          self.stepCountAngle = (self.userSteps / 10000) * 360
+          self.messageToUserAboutStepCount.text = "You haven't been very active today. Remember, a healthy \(self.caste), is a happy \(self.caste)"
+        }
+        self.stepCountProgress.animate(fromAngle: 0, toAngle: self.stepCountAngle, duration: 1) { completed in
+          if completed {
+            print("animation stopped, completed")
+          } else {
+            print("animation stopped, was interrupted")
+          }
+        }
         print("Step Count: \(self.userSteps)")
       })
+      
+      // get most recent sexual activity
+      //retrieveSexualActivity()
       
       // Debug Information
       print("User already signed in")
@@ -402,7 +352,53 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
     }
   }
   
+  // func retrieve sexual activity
+  func retrieveSexualActivity() {
+    let currentDate = Date()
+    let elapsedTime = DateComponentsFormatter()
+    elapsedTime.unitsStyle = .full
+    elapsedTime.allowedUnits = [.year, .month, .day, .hour]
+    elapsedTime.maximumUnitCount = 1
+    
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMM-dd-yyyy-HH"
+    
+    let date = formatter.string(from: currentDate)
+    
+    
+    let sexualActivityReference = Database.database().reference().child("user_health_data").child(self.googleUserId!).child("sexual_activity")
+    
+    sexualActivityReference.observeSingleEvent(of: .value, with: { snapshot in
+      if !snapshot.exists() { return }
+      let getData = snapshot.value as? [String:Any]
+      if let lastDateFromRecord = getData!["last_instance_date"] as? String {
+        self.lastSexualActivityDate = lastDateFromRecord as String!
+        let timeSinceLastSexualActivityAsDate = formatter.date(from: lastDateFromRecord)
+        self.lastSexualActivityDate = elapsedTime.string(from: timeSinceLastSexualActivityAsDate!, to: currentDate)
+        print("time since last encounter: \(self.lastSexualActivityDate)")
+      }
+      
+      if let lastInstanceWith = getData!["last_instance_with"] as? String {
+        self.lastSexualActivityWith = lastInstanceWith as! String?
+        print("it was with: \(self.lastSexualActivityWith)")
+      }
+    })
+    
+    // convert lastDate to a difference between 2 times
+    
+    /*self.databaseReference.queryOrdered(byChild: "user_health_data").observeSingleEvent(of: .childAdded, with: { snapshot in
+      if let getData = snapshot.value as? [String:Any] {
+        let lastDateFromRecord = getData["last_instance_date"] as! String
+        let formattedTimeSinceLastSexualActivity = formatter.date(from: lastDateFromRecord)
+        self.lastSexualActivityDate = Calendar.current.date(from: currentDateComponents)!.offsetFrom(date: formattedTimeSinceLastSexualActivity!)
+        print (self.lastSexualActivityDate)
+        self.lastSexualActivityWith = getData["last_instance_with"] as! String
+      }
+    })*/
+  }
 }
+
+
 
 func delay(_ delay: Double, closure: @escaping ()->()) {
   DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
@@ -424,5 +420,23 @@ extension UIColor {
       blue: rgb & 0xFF,
       a: a
     )
+  }
+}
+
+extension Date {
+  func offsetFrom(date: Date) -> String {
+    let yearMonthDayHour: Set<Calendar.Component> = [.year, .month, .day, .hour]
+    let difference = NSCalendar.current.dateComponents(yearMonthDayHour, from: date, to: self)
+    
+    let hours = "\(difference.hour ?? 0)"
+    let days = "\(difference.day ?? 0) days"
+    let months = "\(difference.month ?? 0)" + " " + days
+    let years = "\(difference.year ?? 0)" + " " + months
+    
+    if let hour = difference.hour, hour > 0 {return hours}
+    if let day = difference.day, day > 0 { return days}
+    if let month = difference.month, month > 0 { return months}
+    if let year = difference.year, year > 0 { return years }
+    return ""
   }
 }

@@ -11,7 +11,8 @@ target 'Fordly' do
   pod 'Firebase/Database'
   pod 'Firebase/Crash'
   pod 'Firebase/Storage'
-
+  pod 'Charts', '~> 3.0.3'
+  
   target 'FordlyTests' do
     inherit! :search_paths
     # Pods for testing

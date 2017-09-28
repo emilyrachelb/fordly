@@ -19,7 +19,22 @@ class SignInController: UIViewController, GIDSignInUIDelegate {
   @IBOutlet weak var appVersionLabel: UILabel!
   @IBOutlet weak var googleSignInButton: GIDSignInButton!
   
+  private let dataTypesToRead: NSSet = {
+    let healthKitManager = HealthKitManager.sharedInstance
+    return NSSet(objects:
+      healthKitManager.biologicalSexCharacteristic,
+                 healthKitManager.dateOfBirthCharacteristic,
+                 healthKitManager.usersHeight,
+                 healthKitManager.usersWeight,
+                 healthKitManager.usersStepCount,
+                 healthKitManager.usersSleepActivity,
+                 healthKitManager.usersSexualActivity)
+  }()
   
+  private let dataTypesToWrite: NSSet = {
+    let healthKitManager = HealthKitManager.sharedInstance
+    return NSSet(objects: healthKitManager.usersSexualActivity)
+  }()
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -36,6 +51,9 @@ class SignInController: UIViewController, GIDSignInUIDelegate {
     
     // Configure Google sign in button
     googleSignInButton.style = GIDSignInButtonStyle.wide
+    
+    // authorize healthkit
+    HealthKitManager.sharedInstance.requestHealthKitAuthorization(dataTypesToWrite: dataTypesToWrite, dataTypesToRead: dataTypesToRead)
   }
   
   override func viewDidAppear(_ animated: Bool) {

@@ -24,7 +24,6 @@
 		15E3A7E91F7B0B1900C49638 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E3A7E81F7B0B1900C49638 /* CoreLocation.framework */; };
 		15E3A7EB1F7B0B1F00C49638 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E3A7EA1F7B0B1F00C49638 /* CloudKit.framework */; };
 		15E3A7EF1F7B2F6E00C49638 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E3A7EE1F7B2F6E00C49638 /* Reachability.swift */; };
-		15E3A7F11F7B49E900C49638 /* EventKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E3A7F01F7B49E900C49638 /* EventKitManager.swift */; };
 		17EDADE33E83ABF9ADF5E69F /* Pods_FordlyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C24694F289C253271F94BF8 /* Pods_FordlyUITests.framework */; };
 		306FEBEFAF5177D41A249BA3 /* Pods_FordlyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A5E863E2BFAC9E929EE2CE6 /* Pods_FordlyTests.framework */; };
 		82208DB74330994FDDDB6D2F /* Pods_Fordly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C5B80CCE4DD0F410778332A /* Pods_Fordly.framework */; };
@@ -72,7 +71,6 @@
 		15E3A7E81F7B0B1900C49638 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		15E3A7EA1F7B0B1F00C49638 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		15E3A7EE1F7B2F6E00C49638 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		15E3A7F01F7B49E900C49638 /* EventKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitManager.swift; sourceTree = "<group>"; };
 		23BC26731438EA2A3EDD65B5 /* Pods-FordlyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FordlyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FordlyTests/Pods-FordlyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2A5E863E2BFAC9E929EE2CE6 /* Pods_FordlyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FordlyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C5B80CCE4DD0F410778332A /* Pods_Fordly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fordly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,7 +144,6 @@
 				151E92DF1F707CC3003B78BA /* AppDelegate.swift */,
 				15D7FF7F1F7C014300CFF677 /* KDCircularProgress.swift */,
 				1512D6071F798CAB00053730 /* HealthKitManager.swift */,
-				15E3A7F01F7B49E900C49638 /* EventKitManager.swift */,
 				152CF4521F707DCA00A9953C /* Main.storyboard */,
 				15E3A7EE1F7B2F6E00C49638 /* Reachability.swift */,
 				151E92EA1F707CC3003B78BA /* Assets.xcassets */,
@@ -458,6 +455,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Fordly/Pods-Fordly-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -467,6 +465,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -576,7 +575,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15E3A7F11F7B49E900C49638 /* EventKitManager.swift in Sources */,
 				15D53DE31F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift in Sources */,
 				152CF4571F707DFC00A9953C /* HomeViewController.swift in Sources */,
 				15E3A7EF1F7B2F6E00C49638 /* Reachability.swift in Sources */,
@@ -751,7 +749,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -771,7 +769,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

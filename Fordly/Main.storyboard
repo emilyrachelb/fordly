@@ -102,22 +102,6 @@
                     <view key="view" contentMode="scaleToFill" id="ana-5T-VBS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaD-YE-45I">
-                                <rect key="frame" x="73" y="155" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZy-DH-a4Y">
-                                <rect key="frame" x="73" y="248" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="tabBarSettings" id="3D2-cg-GQd"/>
@@ -197,6 +181,13 @@
                                     <constraint firstAttribute="trailing" secondItem="Bdx-kf-GIz" secondAttribute="trailing" id="zfY-Hn-XGu"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6n-eC-UW2">
+                                <rect key="frame" x="176" y="170" width="199" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -206,8 +197,10 @@
                             <constraint firstItem="5Ke-3w-qMr" firstAttribute="top" secondItem="aJv-RK-ugh" secondAttribute="top" constant="46" id="oCw-Be-lSf"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Home" image="tabBarHome" selectedImage="tabBarHome" id="Mjd-Hl-xhV"/>
                     <connections>
+                        <outlet property="messageToUserAboutStepCount" destination="n6n-eC-UW2" id="0bh-ne-tHt"/>
                         <outlet property="userAgeLabel" destination="QW6-EV-Dzk" id="gef-CX-JGk"/>
                         <outlet property="userDOBLabel" destination="KTG-m3-hat" id="wzu-vt-UML"/>
                         <outlet property="userEmail" destination="zDb-B5-1se" id="OLr-07-vVZ"/>
@@ -218,26 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HRI-uR-eNZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1116" y="874.81259370314854"/>
-        </scene>
-        <!--Log-->
-        <scene sceneID="P89-xi-oPe">
-            <objects>
-                <viewController id="T31-6K-Top" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="QSy-6z-c26"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ksu-7o-6Rz"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="XKA-u9-iKx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Log" image="tabBarLog" id="BRM-E6-0bK"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tj4-l4-DGn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-278" y="875"/>
+            <point key="canvasLocation" x="-314.39999999999998" y="874.81259370314854"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="oWj-4B-KPJ">
@@ -250,7 +224,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="qxL-pd-pLR" kind="relationship" relationship="viewControllers" id="OXq-ks-UHs"/>
-                        <segue destination="T31-6K-Top" kind="relationship" relationship="viewControllers" id="bBg-h6-pu7"/>
                         <segue destination="scT-eE-uMt" kind="relationship" relationship="viewControllers" id="rDH-eF-1yl"/>
                         <segue destination="FaN-4y-Bfu" kind="relationship" relationship="viewControllers" id="x9f-Fp-EvV"/>
                     </connections>
@@ -262,7 +235,6 @@
     </scenes>
     <resources>
         <image name="tabBarHome" width="30" height="30"/>
-        <image name="tabBarLog" width="30" height="30"/>
         <image name="tabBarPlan" width="30" height="30"/>
         <image name="tabBarSettings" width="30" height="30"/>
     </resources>
