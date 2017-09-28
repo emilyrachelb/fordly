@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  HomeViewController.swift
 //  Fordly
 //
 //  Created by Samantha Emily-Rachel Belnavis on 2017-09-18.
@@ -83,6 +83,17 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   @IBOutlet weak var messageToUserAboutStepCount: UILabel!
   @IBOutlet weak var messageToUserAboutSexualActivity: UILabel!
   
+  @IBAction func logSexualActivity(_ sender: Any) {
+    let currentDate = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMM-dd-yyyy-HH"
+    let date = formatter.string(from: currentDate)
+  
+    databaseReference.child("user_health_data").child(googleUserId!).child("sexual_activity").child("last_instance_date").setValue(date)
+    databaseReference.child("user_health_data").child(googleUserId!).child("sexual_activity").child("last_instance_with").setValue("******")
+    
+    self.retrieveSexualActivity()
+  }
   
   //@IBOutlet weak var stepCountLabel: UILabel!
   
@@ -127,6 +138,10 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
     let sexualActivityRingPVHeightConstraint = NSLayoutConstraint(item: sexualActivityRing, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 100)
     
     view.addConstraints([sexualActivityRingPVHorizontalConstraint, sexualActivityRingPVVerticalConstraint, sexualActivityRingPVWidthConstraint, sexualActivityRingPVHeightConstraint])
+    
+    // log sexual activity
+    
+    
   }
   
   func checkInternet() {
@@ -206,18 +221,6 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
         }
       }
       
-      /*if (try? downloadUserImage(url: googleUserPhoto)) != nil {
-        let nsDocumentDirectory = FileManager.SearchPathDirectory.documentDirectory
-        let nsUserDomainMask = FileManager.SearchPathDomainMask.userDomainMask
-        let paths = NSSearchPathForDirectoriesInDomains(nsDocumentDirectory, nsUserDomainMask, true)
-        if let dirPath = paths.first {
-          let imageUrl = URL(fileURLWithPath: dirPath).appendingPathComponent("\(googleUserId).png")
-          userPhoto.image = UIImage(contentsOfFile: imageUrl.path)
-        }
-      } else {
-        userPhoto.image = UIImage(named: "noUserImage")
-      }*/
-      
       // get the user's gender from HealthKit
       let userAgeAndGender = try? updateUserProfile()
       userGender = userAgeAndGender?.biologicalSex.stringRepresentation
@@ -250,10 +253,6 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
         databaseReference.child("user_profiles").child(googleUserId!).child("gender").setValue(userGender)
       }
       
-      // write example data
-      //databaseReference.child("user_health_data").child(googleUserId!).child("sexual_activity").child(date).child("last_instance_date").setValue(date)
-      //databaseReference.child("user_health_data").child(googleUserId!).child("sexual_activity").child(date).child("last_instance_with").setValue("******")
-      
       // fetch step data
       guard let stepCountSampleType = HKSampleType.quantityType(forIdentifier: .stepCount) else {
         print("Either the height sample doesn't exist, the sample type is no longer available, or there's an error somewhere in the retrieval function")
@@ -276,10 +275,10 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
         self.databaseReference.child("user_health_data").child(self.googleUserId!).child("step_count").child(date).child("steps").setValue(self.userSteps)
         if (((self.userSteps/10000)*100) >= 75) {
           self.stepCountAngle = 365
-          self.messageToUserAboutStepCount.text = "You've been very active today. Remember, a healthy \(self.caste), is a happy \(self.caste)"
+          self.messageToUserAboutStepCount.text = "You've been very active today. Remember, everyone works for everyone else. We can't do with out anyone."
         } else {
           self.stepCountAngle = (self.userSteps / 10000) * 360
-          self.messageToUserAboutStepCount.text = "You haven't been very active today. Remember, a healthy \(self.caste), is a happy \(self.caste)"
+          self.messageToUserAboutStepCount.text = "You haven't been very active today. Remember, everyone works for everyone else. We can't do with out anyone."
         }
         self.stepCountProgress.animate(fromAngle: 0, toAngle: self.stepCountAngle, duration: 1) { completed in
           if completed {
@@ -293,7 +292,6 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       
       // get most recent sexual activity
       retrieveSexualActivity()
-      updateSexualActivityRing()
       
       // Debug Information
       print("User already signed in")
@@ -405,27 +403,32 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
         
         if self.timeSinceLastSexualActivityTimeUnit == "hours" {
           print("it's only been hours")
-          let hoursInDay = 24
-          self.sexualActivityAngle = Double(hoursInDay - self.timeSinceLastSexualActivityAsNum)*360
+          let hoursInDay = 24.0
           // if less than 12 hours
-          if (self.timeSinceLastSexualActivityAsNum <= 12) {
-            self.messageToUserAboutSexualActivity.text = "It has been \(self.lastSexualActivityDate!) since you had \(self.lastSexualActivityWith)"
+          if (self.timeSinceLastSexualActivityAsNum == 0) {
+            self.sexualActivityAngle = 359
+            self.messageToUserAboutSexualActivity.text = "It has been \(self.lastSexualActivityDate!) since you've had someone"
+          } else if (self.timeSinceLastSexualActivityAsNum <= 12) {
+            let angle = Double(360) - Double((Double(self.timeSinceLastSexualActivityAsNum) / hoursInDay)*360)
+            self.sexualActivityAngle = angle
+            self.messageToUserAboutSexualActivity.text = "It has been \(self.lastSexualActivityDate!) since you had someone"
           } else {
-            self.messageToUserAboutSexualActivity.text = "It has been \(self.lastSexualActivityDate!) since you had \(self.lastSexualActivityWith). Remember that everyone belongs to everyone else, so get out there are find another partner"
+            let angle = Double(360) - Double((Double(self.timeSinceLastSexualActivityAsNum) / hoursInDay)*360)
+            self.sexualActivityAngle = angle
+            self.messageToUserAboutSexualActivity.text = "It has been \(self.lastSexualActivityDate!) since you had someone. Reminder that everyone belongs to everyone else, those found in non-compliance will be subject to \"reconditioning\""
           }
           
           // if it has been days
-        } else if (self.timeSinceLastSexualActivityTimeUnit == "days") {
+        } else if (self.timeSinceLastSexualActivityTimeUnit == "days") || (self.timeSinceLastSexualActivityTimeUnit == "day")  {
           print("it's been days")
           self.sexualActivityAngle = 5
           //if it has been more than 3 days
-          if (self.timeSinceLastSexualActivityAsNum > 3) {
+          if (self.timeSinceLastSexualActivityAsNum >= 3) {
             self.messageToUserAboutSexualActivity.text = "It has been \(self.lastSexualActivityDate!) since you've had anyone. Are you going to find someone or have you forgotten that everbody belongs to everyone else like Bernard Marx?"
           } else {
-            self.messageToUserAboutSexualActivity.text = "It has been \(self.lastSexualActivityDate!) since you had \(self.lastSexualActivityWith). Remember that everyone belongs to everyone else, so get out there are find another partner"
+            self.messageToUserAboutSexualActivity.text = "It has been \(self.lastSexualActivityDate!) since you've had anyone. Reminder that everyone belongs to everyone else, those found in non-compliance will be subject to \"reconditioning\""
           }
         }
-        
         self.sexualActivityRing.animate(fromAngle: 0, toAngle: self.sexualActivityAngle, duration: 1) { completed in
           if completed {
             print("animation stopped, completed")
@@ -433,50 +436,10 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
             print("animation stopped, was interrupted")
           }
         }
-      }
-      
-      if let lastInstanceWith = getData!["last_instance_with"] as? String {
-        self.lastSexualActivityWith = lastInstanceWith as String!
-        print("it was with: \(self.lastSexualActivityWith)")
+
       }
     })
   }
-  
-  // update sexual activity ring
-  func updateSexualActivityRing() {
-    // if it has been hours
-    if self.timeSinceLastSexualActivityTimeUnit == "hours" {
-      print("it's only been hours")
-      let hoursInDay = 24
-      self.sexualActivityAngle = Double(hoursInDay - self.timeSinceLastSexualActivityAsNum)*360
-      // if less than 12 hours
-      if (self.timeSinceLastSexualActivityAsNum <= 12) {
-        self.messageToUserAboutSexualActivity.text = "It has been \(self.timeSinceLastSexualActivity) since you had \(self.lastSexualActivityWith)"
-      } else {
-        self.messageToUserAboutSexualActivity.text = "It has been \(self.timeSinceLastSexualActivity) since you had \(self.lastSexualActivityWith). Remember that everyone belongs to everyone else, so get out there are find another partner"
-      }
-      
-      // if it has been days
-    } else if (self.timeSinceLastSexualActivityTimeUnit == "days") {
-      print("it's been days")
-      self.sexualActivityAngle = 5
-      //if it has been more than 3 days
-      if (self.timeSinceLastSexualActivityAsNum > 3) {
-        self.messageToUserAboutSexualActivity.text = "It has been \(self.timeSinceLastSexualActivity) since you've had anyone. Are you going to find someone or have you forgotten that everbody belongs to everyone else like Bernard Marx?"
-      } else {
-        self.messageToUserAboutSexualActivity.text = "It has been \(self.timeSinceLastSexualActivity) since you had \(self.lastSexualActivityWith). Remember that everyone belongs to everyone else, so get out there are find another partner"
-      }
-    }
-    
-    self.sexualActivityRing.animate(fromAngle: 0, toAngle: self.sexualActivityAngle, duration: 1) { completed in
-      if completed {
-        print("animation stopped, completed")
-      } else {
-        print("animation stopped, was interrupted")
-      }
-    }
-  }
-  
 }
 
 
@@ -519,4 +482,28 @@ extension Date {
     if let year = difference.year, year > 0 { return years }
     return ""
   }
+}
+
+@IBDesignable extension UIButton {
+  @IBInspectable var borderWidth: CGFloat {
+    set { layer.borderWidth = newValue}
+    get { return layer.borderWidth }
+  }
+  
+  @IBInspectable var cornerRadius: CGFloat {
+    set { layer.cornerRadius = newValue }
+    get { return layer.cornerRadius }
+  }
+  
+  @IBInspectable var borderColor: UIColor? {
+    set {
+      guard let uiColor = newValue else { return }
+      layer.borderColor = uiColor.cgColor
+    }
+    get {
+      guard let color = layer.borderColor else { return nil }
+      return UIColor(cgColor: color)
+    }
+  }
+  
 }

@@ -17,6 +17,7 @@
 		152CF4531F707DCA00A9953C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 152CF4521F707DCA00A9953C /* Main.storyboard */; };
 		152CF4551F707DF400A9953C /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152CF4541F707DF400A9953C /* SignInController.swift */; };
 		152CF4571F707DFC00A9953C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152CF4561F707DFC00A9953C /* HomeViewController.swift */; };
+		1555F6E11F7CF03E00A067CF /* PlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1555F6E01F7CF03E00A067CF /* PlanViewController.swift */; };
 		157B8B631F74361F0009A9A0 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157B8B621F74361F0009A9A0 /* HealthKit.framework */; };
 		15D53DE31F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D53DE21F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift */; };
 		15D7FF801F7C014300CFF677 /* KDCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D7FF7F1F7C014300CFF677 /* KDCircularProgress.swift */; };
@@ -63,6 +64,7 @@
 		152CF4521F707DCA00A9953C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		152CF4541F707DF400A9953C /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		152CF4561F707DFC00A9953C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1555F6E01F7CF03E00A067CF /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
 		157B8B611F74361F0009A9A0 /* Fordly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fordly.entitlements; sourceTree = "<group>"; };
 		157B8B621F74361F0009A9A0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		15D53DE21F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKBiologicalSex+StringRepresentation.swift"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				152CF4541F707DF400A9953C /* SignInController.swift */,
+				1555F6E01F7CF03E00A067CF /* PlanViewController.swift */,
 				152CF4561F707DFC00A9953C /* HomeViewController.swift */,
 			);
 			path = "View Controllers";
@@ -580,6 +583,7 @@
 				15E3A7EF1F7B2F6E00C49638 /* Reachability.swift in Sources */,
 				15D7FF801F7C014300CFF677 /* KDCircularProgress.swift in Sources */,
 				151E92E01F707CC3003B78BA /* AppDelegate.swift in Sources */,
+				1555F6E11F7CF03E00A067CF /* PlanViewController.swift in Sources */,
 				1512D6081F798CAB00053730 /* HealthKitManager.swift in Sources */,
 				152CF4551F707DF400A9953C /* SignInController.swift in Sources */,
 			);
