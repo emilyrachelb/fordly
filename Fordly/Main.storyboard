@@ -182,7 +182,14 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6n-eC-UW2">
-                                <rect key="frame" x="176" y="170" width="199" height="150"/>
+                                <rect key="frame" x="134" y="170" width="241" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjj-ey-T1m">
+                                <rect key="frame" x="134" y="300" width="241" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
@@ -200,6 +207,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Home" image="tabBarHome" selectedImage="tabBarHome" id="Mjd-Hl-xhV"/>
                     <connections>
+                        <outlet property="messageToUserAboutSexualActivity" destination="qjj-ey-T1m" id="JMA-MZ-AbC"/>
                         <outlet property="messageToUserAboutStepCount" destination="n6n-eC-UW2" id="0bh-ne-tHt"/>
                         <outlet property="userAgeLabel" destination="QW6-EV-Dzk" id="gef-CX-JGk"/>
                         <outlet property="userDOBLabel" destination="KTG-m3-hat" id="wzu-vt-UML"/>

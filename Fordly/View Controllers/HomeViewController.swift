@@ -7,11 +7,11 @@
 //
 
 // import required frameworks
+import Foundation
 import UIKit
 import Firebase
 import GoogleSignIn
 import HealthKit
-
 
 
 // start MainViewController class
@@ -50,6 +50,7 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   var lastSexualActivityDate: String!
   var timeSinceLastSexualActivity: String!
   var timeSinceLastSexualActivityAsNum: Int!
+  var timeSinceLastSexualActivityTimeUnit: String!
   var userGender: String!
   var userAge: Int!
   var caste = "Beta"
@@ -75,8 +76,14 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
   
   //KDCircularProgress variable
   var stepCountProgress: KDCircularProgress!
-  var stepCountAngle: Double = -90.0
+  var sexualActivityRing: KDCircularProgress!
+  var stepCountAngle = 5.0
+  var sexualActivityAngle = 5.0
+  
   @IBOutlet weak var messageToUserAboutStepCount: UILabel!
+  @IBOutlet weak var messageToUserAboutSexualActivity: UILabel!
+  
+  
   //@IBOutlet weak var stepCountLabel: UILabel!
   
   override func viewDidLoad() {
@@ -86,7 +93,7 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
     GIDSignIn.sharedInstance().signInSilently()
     
     // step count activity ring
-    stepCountProgress = KDCircularProgress(frame: CGRect(x: 16, y: 170, width: 150, height: 150))
+    stepCountProgress = KDCircularProgress(frame: CGRect(x: 16, y: 170, width: 100, height: 100))
     stepCountProgress.startAngle = -90
     stepCountProgress.progressThickness = 0.1
     stepCountProgress.trackThickness = 0.05
@@ -103,7 +110,23 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
     
     view.addConstraints([stepCountPVHorizontalConstraint, stepCountPVVerticalConstraint, stepCountPVWidthConstraint, stepCountPVHeightConstraint])
     
+    // sexual activity - activity ring
+    sexualActivityRing = KDCircularProgress(frame: CGRect(x: 16, y: 300, width: 100, height: 100))
+    sexualActivityRing.startAngle = -90
+    sexualActivityRing.progressThickness = 0.1
+    sexualActivityRing.trackThickness = 0.05
+    sexualActivityRing.clockwise = true
+    sexualActivityRing.roundedCorners = true
+    sexualActivityRing.trackColor = UIColor(rgb: 0x5903E1, a: 0.15)
+    sexualActivityRing.set(colors: UIColor(rgb: 0x5903E1, a: 1), UIColor(rgb: 0xBA62FF))
+    view.addSubview(sexualActivityRing)
     
+    let sexualActivityRingPVHorizontalConstraint = NSLayoutConstraint(item: sexualActivityRing, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
+    let sexualActivityRingPVVerticalConstraint = NSLayoutConstraint(item: sexualActivityRing, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
+    let sexualActivityRingPVWidthConstraint = NSLayoutConstraint(item: sexualActivityRing, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 100)
+    let sexualActivityRingPVHeightConstraint = NSLayoutConstraint(item: sexualActivityRing, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 100)
+    
+    view.addConstraints([sexualActivityRingPVHorizontalConstraint, sexualActivityRingPVVerticalConstraint, sexualActivityRingPVWidthConstraint, sexualActivityRingPVHeightConstraint])
   }
   
   func checkInternet() {
@@ -161,26 +184,25 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       
       // check internet connection
       delay(1.0){
-        //self.checkInternet()
-      }
-      
-      if (couldConnect == true) {
-        // device is connected to the internet; download, save and set user photo
-        if (try? downloadUserImage(url: googleUserPhoto)) != nil {
-          userPhoto.image = UIImage(contentsOfFile: imageUrl.path)
+        self.checkInternet()
+        if (self.couldConnect == true) {
+          // device is connected to the internet; download, save and set user photo
+          if (try? self.downloadUserImage(url: self.googleUserPhoto)) != nil {
+            self.userPhoto.image = UIImage(contentsOfFile: imageUrl.path)
+          } else {
+            // no existing photo
+            self.userPhoto.image = UIImage(named: "noUserImage")
+          }
         } else {
-          // no existing photo
-          userPhoto.image = UIImage(named: "noUserImage")
-        }
-      } else {
-        // the device cannot reach the internet; check for existing photo
-        print("Could not connect to the internet")
-        if FileManager.default.fileExists(atPath: dirPath!) {
-          // photo exists
-          userPhoto.image = UIImage(contentsOfFile: imageUrl.path)
-        } else {
-          // no existing photo
-          userPhoto.image = UIImage(named: "noUserImage")
+          // the device cannot reach the internet; check for existing photo
+          print("Could not connect to the internet")
+          if FileManager.default.fileExists(atPath: dirPath!) {
+            // photo exists
+            self.userPhoto.image = UIImage(contentsOfFile: imageUrl.path)
+          } else {
+            // no existing photo
+            self.userPhoto.image = UIImage(named: "noUserImage")
+          }
         }
       }
       
@@ -270,7 +292,8 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
       })
       
       // get most recent sexual activity
-      //retrieveSexualActivity()
+      retrieveSexualActivity()
+      updateSexualActivityRing()
       
       // Debug Information
       print("User already signed in")
@@ -365,7 +388,6 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
     
     let date = formatter.string(from: currentDate)
     
-    
     let sexualActivityReference = Database.database().reference().child("user_health_data").child(self.googleUserId!).child("sexual_activity")
     
     sexualActivityReference.observeSingleEvent(of: .value, with: { snapshot in
@@ -375,29 +397,87 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
         self.lastSexualActivityDate = lastDateFromRecord as String!
         let timeSinceLastSexualActivityAsDate = formatter.date(from: lastDateFromRecord)
         self.lastSexualActivityDate = elapsedTime.string(from: timeSinceLastSexualActivityAsDate!, to: currentDate)
-        print("time since last encounter: \(self.lastSexualActivityDate)")
+        self.timeSinceLastSexualActivityAsNum = Int(self.lastSexualActivityDate.components(separatedBy: CharacterSet.decimalDigits.inverted).joined())
+        self.timeSinceLastSexualActivityTimeUnit = String(self.lastSexualActivityDate.components(separatedBy: CharacterSet.letters.inverted).joined())
+        print("time since last encounter (number only) \(self.timeSinceLastSexualActivityAsNum!)")
+        print("time since last encounter (time unit only) \(self.timeSinceLastSexualActivityTimeUnit!)")
+        print("time since last encounter: \(self.lastSexualActivityDate!)")
+        
+        if self.timeSinceLastSexualActivityTimeUnit == "hours" {
+          print("it's only been hours")
+          let hoursInDay = 24
+          self.sexualActivityAngle = Double(hoursInDay - self.timeSinceLastSexualActivityAsNum)*360
+          // if less than 12 hours
+          if (self.timeSinceLastSexualActivityAsNum <= 12) {
+            self.messageToUserAboutSexualActivity.text = "It has been \(self.lastSexualActivityDate!) since you had \(self.lastSexualActivityWith)"
+          } else {
+            self.messageToUserAboutSexualActivity.text = "It has been \(self.lastSexualActivityDate!) since you had \(self.lastSexualActivityWith). Remember that everyone belongs to everyone else, so get out there are find another partner"
+          }
+          
+          // if it has been days
+        } else if (self.timeSinceLastSexualActivityTimeUnit == "days") {
+          print("it's been days")
+          self.sexualActivityAngle = 5
+          //if it has been more than 3 days
+          if (self.timeSinceLastSexualActivityAsNum > 3) {
+            self.messageToUserAboutSexualActivity.text = "It has been \(self.lastSexualActivityDate!) since you've had anyone. Are you going to find someone or have you forgotten that everbody belongs to everyone else like Bernard Marx?"
+          } else {
+            self.messageToUserAboutSexualActivity.text = "It has been \(self.lastSexualActivityDate!) since you had \(self.lastSexualActivityWith). Remember that everyone belongs to everyone else, so get out there are find another partner"
+          }
+        }
+        
+        self.sexualActivityRing.animate(fromAngle: 0, toAngle: self.sexualActivityAngle, duration: 1) { completed in
+          if completed {
+            print("animation stopped, completed")
+          } else {
+            print("animation stopped, was interrupted")
+          }
+        }
       }
       
       if let lastInstanceWith = getData!["last_instance_with"] as? String {
-        self.lastSexualActivityWith = lastInstanceWith as! String?
+        self.lastSexualActivityWith = lastInstanceWith as String!
         print("it was with: \(self.lastSexualActivityWith)")
       }
     })
-    
-    // convert lastDate to a difference between 2 times
-    
-    /*self.databaseReference.queryOrdered(byChild: "user_health_data").observeSingleEvent(of: .childAdded, with: { snapshot in
-      if let getData = snapshot.value as? [String:Any] {
-        let lastDateFromRecord = getData["last_instance_date"] as! String
-        let formattedTimeSinceLastSexualActivity = formatter.date(from: lastDateFromRecord)
-        self.lastSexualActivityDate = Calendar.current.date(from: currentDateComponents)!.offsetFrom(date: formattedTimeSinceLastSexualActivity!)
-        print (self.lastSexualActivityDate)
-        self.lastSexualActivityWith = getData["last_instance_with"] as! String
-      }
-    })*/
   }
+  
+  // update sexual activity ring
+  func updateSexualActivityRing() {
+    // if it has been hours
+    if self.timeSinceLastSexualActivityTimeUnit == "hours" {
+      print("it's only been hours")
+      let hoursInDay = 24
+      self.sexualActivityAngle = Double(hoursInDay - self.timeSinceLastSexualActivityAsNum)*360
+      // if less than 12 hours
+      if (self.timeSinceLastSexualActivityAsNum <= 12) {
+        self.messageToUserAboutSexualActivity.text = "It has been \(self.timeSinceLastSexualActivity) since you had \(self.lastSexualActivityWith)"
+      } else {
+        self.messageToUserAboutSexualActivity.text = "It has been \(self.timeSinceLastSexualActivity) since you had \(self.lastSexualActivityWith). Remember that everyone belongs to everyone else, so get out there are find another partner"
+      }
+      
+      // if it has been days
+    } else if (self.timeSinceLastSexualActivityTimeUnit == "days") {
+      print("it's been days")
+      self.sexualActivityAngle = 5
+      //if it has been more than 3 days
+      if (self.timeSinceLastSexualActivityAsNum > 3) {
+        self.messageToUserAboutSexualActivity.text = "It has been \(self.timeSinceLastSexualActivity) since you've had anyone. Are you going to find someone or have you forgotten that everbody belongs to everyone else like Bernard Marx?"
+      } else {
+        self.messageToUserAboutSexualActivity.text = "It has been \(self.timeSinceLastSexualActivity) since you had \(self.lastSexualActivityWith). Remember that everyone belongs to everyone else, so get out there are find another partner"
+      }
+    }
+    
+    self.sexualActivityRing.animate(fromAngle: 0, toAngle: self.sexualActivityAngle, duration: 1) { completed in
+      if completed {
+        print("animation stopped, completed")
+      } else {
+        print("animation stopped, was interrupted")
+      }
+    }
+  }
+  
 }
-
 
 
 func delay(_ delay: Double, closure: @escaping ()->()) {
