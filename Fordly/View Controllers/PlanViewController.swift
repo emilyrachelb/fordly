@@ -18,6 +18,9 @@ class PlanViewController: UIViewController, CLLocationManagerDelegate {
   let locationManager = CLLocationManager()
   var startLocation: CLLocation!
   
+  // firebase setup
+  var databaseRef: DatabaseReference!
+  
   // Taxi Copter
   @IBOutlet weak var taxiCopterView: UIView!
   @IBOutlet weak var taxiCopterButton: UIButton!
@@ -32,7 +35,6 @@ class PlanViewController: UIViewController, CLLocationManagerDelegate {
     
     // get user's location
     startLocation = nil
-
   }
   
   // Blue Pacific Rocket
@@ -75,8 +77,7 @@ class PlanViewController: UIViewController, CLLocationManagerDelegate {
     // get user's location
     startLocation = nil
   }
-  
-  
+
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     let latestLocation: CLLocation = locations[locations.count - 1]
@@ -110,6 +111,8 @@ class PlanViewController: UIViewController, CLLocationManagerDelegate {
     startLocation = nil
     
     initNotificationSetupCheck()
+    
+    databaseRef = Database.database().reference()
     
   }
   

@@ -65,6 +65,7 @@
 		152CF4541F707DF400A9953C /* SignInController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		152CF4561F707DFC00A9953C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1555F6E01F7CF03E00A067CF /* PlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanViewController.swift; sourceTree = "<group>"; };
+		157886451F8305C3006E2B6E /* home.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = home.gpx; sourceTree = "<group>"; };
 		157B8B611F74361F0009A9A0 /* Fordly.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fordly.entitlements; sourceTree = "<group>"; };
 		157B8B621F74361F0009A9A0 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		15D53DE21F79E68400C49817 /* HKBiologicalSex+StringRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HKBiologicalSex+StringRepresentation.swift"; sourceTree = "<group>"; };
@@ -152,6 +153,7 @@
 				15235FB31F70851D00F842B4 /* GoogleService-Info.plist */,
 				151E92EC1F707CC3003B78BA /* LaunchScreen.storyboard */,
 				151E92EF1F707CC3003B78BA /* Info.plist */,
+				157886451F8305C3006E2B6E /* home.gpx */,
 				15D53DE11F79E64B00C49817 /* HealthKitExtensions */,
 			);
 			path = Fordly;

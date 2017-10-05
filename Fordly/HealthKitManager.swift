@@ -80,7 +80,7 @@ class HealthKitManager {
   
   class func getMostRecentSample(for sampleType: HKSampleType, completion: @escaping (HKQuantitySample?, Error?) -> Swift.Void) {
     // use hkquery to load the most recent samples
-    let mostRecentPredicate = HKQuery.predicateForSamples(withStart: Date.distantPast, end: Date(), options: .strictEndDate)
+    let mostRecentPredicate = HKQuery.predicateForSamples(withStart: Date.distantPast, end: Date().tomorrow, options: .strictEndDate)
     
     let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
     
@@ -98,38 +98,15 @@ class HealthKitManager {
     HKHealthStore().execute(sampleQuery)
   }
   
-  func getTodaysSteps(completion: @escaping (Double) -> Void) {
-    let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-    
-    let now = Date()
-    let startOfDay = Calendar.current.startOfDay(for: now)
-    let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
-    
-    let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { (_, result, error) in
-      var resultCount = 0.0
-      
-      guard let result = result else {
-        print("Failed to fetch steps = \(error?.localizedDescription ?? "N/A")")
-        completion(resultCount)
-        return
-      }
-      
-      if let sum = result.sumQuantity() {
-        resultCount = sum.doubleValue(for: HKUnit.count())
-      }
-      
-      DispatchQueue.main.async {
-        completion(resultCount)
-      }
-    }
-    
-    HKHealthStore().execute(query)
-  }
   
 }
 
 extension Date {
   var lastYear: Date {
     return Calendar.current.date(byAdding: .day, value: -365, to: self)!
+  }
+  
+  var tomorrow: Date {
+    return Calendar.current.date(byAdding: .day, value: 1, to: self)!
   }
 }
