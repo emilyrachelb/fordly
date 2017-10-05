@@ -10,6 +10,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import HealthKit
 
 // start SignInController class
 class SignInController: UIViewController, GIDSignInUIDelegate {

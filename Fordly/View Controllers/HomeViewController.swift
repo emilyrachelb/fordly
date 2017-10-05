@@ -271,15 +271,19 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM-dd-yyyy"
         let date = formatter.string(from: currentDate)
-        formatter.dateFormat = "MMM-dd-yyyy"
+        
         self.databaseReference.child("user_health_data").child(self.googleUserId!).child("step_count").child(date).child("steps").setValue(self.userSteps)
-        if (((self.userSteps/10000)*100) >= 75) {
-          self.stepCountAngle = 365
+        if (self.userSteps >= 10000) {
+          self.stepCountAngle = 359
+          self.messageToUserAboutStepCount.text = "Congratulations \(String(describing: self.googleUserName!)) on being so active today! Remember, everyone works for everyone else. We can't do with out anyone."
+        } else if (self.userSteps >= 5000) {
+          self.stepCountAngle = Double((Double(self.userSteps) / 10000) * 360)
           self.messageToUserAboutStepCount.text = "You've been very active today. Remember, everyone works for everyone else. We can't do with out anyone."
         } else {
-          self.stepCountAngle = (self.userSteps / 10000) * 360
+           self.stepCountAngle = Double((Double(self.userSteps) / 10000) * 360)
           self.messageToUserAboutStepCount.text = "You haven't been very active today. Remember, everyone works for everyone else. We can't do with out anyone."
         }
+        
         self.stepCountProgress.animate(fromAngle: 0, toAngle: self.stepCountAngle, duration: 1) { completed in
           if completed {
             print("animation stopped, completed")
@@ -384,7 +388,6 @@ class HomeViewController: UIViewController, GIDSignInUIDelegate {
     let formatter = DateFormatter()
     formatter.dateFormat = "MMM-dd-yyyy-HH"
     
-    let date = formatter.string(from: currentDate)
     
     let sexualActivityReference = Database.database().reference().child("user_health_data").child(self.googleUserId!).child("sexual_activity")
     
