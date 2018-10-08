@@ -1,6 +1,0 @@
-framework module Pods_FordlyUITests {
-  umbrella header "Pods-FordlyUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
